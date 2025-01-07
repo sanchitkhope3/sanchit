@@ -1,5 +1,5 @@
 # TEJ20R Real World Vending Machine Project
-by Sanchit Khope
+Description: by: Sanchit
 
 # Function:
 ### The function of this project is to dispense candy and chocolates from a vending machine.
