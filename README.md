@@ -1,4 +1,4 @@
-# TEJ20R Projects
+TEJ20R Projects
 
 # Real World Vending Machine
 by: Sanchit Khope
