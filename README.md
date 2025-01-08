@@ -1,6 +1,11 @@
 # TEJ20R Real World Vending Machine Project
 by: Sanchit Khope
 
+
+
+![Vendingmachine](https://github.com/user-attachments/assets/cf389e08-7e82-4ec8-877b-a53acc4cf320)
+Vending Machine Final Product
+
 # Function:
 ### The function of this project is to dispense candy and chocolates from a vending machine.
 # Explanation
@@ -19,6 +24,7 @@ My output for this project is the 3 servo motors, connected to metal wires, whic
 ![1736260442650 (1)](https://github.com/user-attachments/assets/f8e6aa3e-175a-4fab-9e99-13184f32aca6)
 
 # Logic Diagram
-![LOGICLY LOGIC DIAGRAM (1)](https://github.com/user-attachments/assets/261d7126-8e67-4307-b841-99de8b5b2b0f)
+<img width="504" alt="LOGICDIAGRM1" src="https://github.com/user-attachments/assets/fd1fc8bc-e0c7-46dd-87d8-d95fb2bcc7d5" />
+
 
 
