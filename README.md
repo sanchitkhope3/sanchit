@@ -18,4 +18,7 @@ My output for this project is the 3 servo motors, connected to metal wires, whic
 # Back Wiring
 ![1736260442650 (1)](https://github.com/user-attachments/assets/f8e6aa3e-175a-4fab-9e99-13184f32aca6)
 
-# 
+# Logic Diagram
+![LOGICLY LOGIC DIAGRAM (1)](https://github.com/user-attachments/assets/261d7126-8e67-4307-b841-99de8b5b2b0f)
+
+
