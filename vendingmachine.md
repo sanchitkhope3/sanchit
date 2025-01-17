@@ -1,3 +1,4 @@
+---
 # Real World Vending Machine
 by: Sanchit Khope
 
@@ -25,3 +26,4 @@ My output for this project is the 3 servo motors, connected to metal wires, whic
 
 # Logic Diagram
 <img width="504" alt="LOGICDIAGRM1" src="https://github.com/user-attachments/assets/fd1fc8bc-e0c7-46dd-87d8-d95fb2bcc7d5" />
+---
