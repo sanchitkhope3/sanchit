@@ -70,6 +70,7 @@
         <li>If the pedestrian button is pressed, it starts a sequence with the pedestrian LED on, then reverts to the original sequence without the pedestrian lights.</li>
         <li>Once the pedestrian LED is on, it starts the other pedestrian light. This resembles a real stoplight.</li>
         <li>There is also a left turn signal that activates every time, resembling real-life traffic lights.</li>
+        <li>It also prints the color it is on, inside the terminal, so you can also keep track of it there.</li>
     </ul>
     <p>This code may look simple; however, the timing of the sequences is quite complex. To control the LEDs, I used <code>GPIOZero</code>, which is a simpler form of <code>RPI.GPIO</code>.</p>
     <hr>
