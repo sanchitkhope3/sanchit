@@ -28,6 +28,17 @@
       float: right; /* Align text to the right */
       font-weight: bold; /* Optional styling */
     }
+    .content, #contact {
+      max-width: 900px; /* Limit the width of the content */
+      margin: 0 auto; /* Center the content */
+      padding: 0 20px; /* Add some padding on the sides */
+    }
+    #contact form div {
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px 20px;
+    }
   </style>
 </head>
 <body>
@@ -40,24 +51,26 @@
   <div class="content">
     <h1>Welcome to My TEJ20R Portfolio</h1>
     <p>I am a grade 10 Student Sanchit, in Port Credit Secondary School, interested in creating and presenting technology projects</p>
-    <p> For my projects please go to posts!</p>
+    <p>For my projects please go to posts!</p>
     <p>To learn about me or, to contact me go to About!</p>
   </div>
 
-<section id="contact">
-  <h2>Contact Me</h2>
-  <form action="https://formspree.io/f/your-form-id" method="POST">
-<div>
-    <input type="text" id="name" name="name" placeholder="Your name" required>
-<div>
-   
-    <input type="email" id="email" name="email" placeholder="Your email" required>
-<div>
-    <textarea id="message" name="message" placeholder="Your message" rows="5" required></textarea>
-<div>
-    <button type="submit">Send</button>
-  </form>
-</section>
-</div>
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form action="https://formspree.io/f/your-form-id" method="POST">
+      <div>
+        <input type="text" id="name" name="name" placeholder="Your name" required>
+      </div>
+      <div>
+        <input type="email" id="email" name="email" placeholder="Your email" required>
+      </div>
+      <div>
+        <textarea id="message" name="message" placeholder="Your message" rows="5" required></textarea>
+      </div>
+      <div>
+        <button type="submit">Send</button>
+      </div>
+    </form>
+  </section>
 </body>
 </html>
