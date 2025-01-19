@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real World Vending Machine</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; }
+    .navbar { background-color: #333; overflow: hidden; }
+    .navbar a { float: left; color: white; text-align: center; padding: 14px 16px; text-decoration: none; }
+    .navbar a:hover { background-color: #ddd; color: black; }
+    img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+    .content { padding: 20px; }
+    .image-container { text-align: left; margin: 20px 0; }
+    .image-container img { max-width: 80%; border: 1px solid #ddd; padding: 5px; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="../index.html">Home</a>
+    <a href="../about.html">About</a>
+    <a href="../posts.html">Posts</a>
+  </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEJ Traffic Light</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            padding: 0;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            padding: 10px;
+            overflow-x: auto;
+        }
+        code {
+            color: #c7254e;
+            background-color: #f9f2f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        .author {
+            font-style: italic;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid #ddd;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>TEJ Traffic Light</h1>
+    <p class="author"><strong>By:</strong> Sanchit Khope</p>
+    <hr>
+    <h2>Explanation of the Project</h2>
+    <p>Our task for this project was to create a project using all of the skills and knowledge from the last 6 months. The project we chose to make was the traffic light, using a Raspberry Pi 4b to code it. My logic behind this project was to use threads, a module in Python, to run tasks concurrently.</p>
+    <p>In this project:</p>
+    <ul>
+        <li>If the pedestrian button is pressed, it starts a sequence with the pedestrian LED on, then reverts to the original sequence without the pedestrian lights.</li>
+        <li>Once the pedestrian LED is on, it starts the other pedestrian light. This resembles a real stoplight.</li>
+        <li>There is also a left turn signal that activates every time, resembling real-life traffic lights.</li>
+    </ul>
+    <p>This code may look simple; however, the timing of the sequences is quite complex. To control the LEDs, I used <code>GPIOZero</code>, which is a simpler form of <code>RPI.GPIO</code>.</p>
+    <hr>
+    <h2>Inputs</h2>
+    <p>My inputs were <strong>4 push buttons</strong> on the poles, acting as pedestrian buttons.</p>
+    <hr>
+    <h2>Python Code</h2>
+    <pre><code>
+import time
+import threading
+from gpiozero import LED, Button
+
+input_received = threading.Event()
+input_received2 = threading.Event()
+pedestrian_active = threading.Event()
+pedestrian_active2 = threading.Event()
+normal_run_pause = threading.Event()
+normal_run_pause2 = threading.Event()
+
+led = LED(17)
+gled = LED(27)
+yled = LED(22)
+rled = LED(23)
+gled2 = LED(24)
+yled2 = LED(25)
+pled1 = LED(16)
+pled2 = LED(26)
+crossbutton = Button(5)
+crossbutton2 = Button(6)
+
+def cross_input():
+    while True:
+        if crossbutton.is_pressed:
+            input_received.set()
+
+def cross_input2():
+    while True:
+        if crossbutton2.is_pressed:
+            input_received2.set()
+
+def red_light():
+    print("\nColor: Red")
+    led.on()
+    time.sleep(8)
+    led.off()
+
+def red_light2():
+    print("\nColor 2: Red")
+    rled.on()
+    time.sleep(8)
+    rled.off()
+
+def normalrun2():
+    while True:
+        t1_1 = threading.Thread(target=red_light2, daemon=True)
+        t1_2 = threading.Thread(target=cross_input2, daemon=True)
+        t1_3 = threading.Thread(target=pedestrianrun, daemon=True)
+        
+        t1_1.start()
+        t1_2.start()
+        
+        t1_2.join(timeout=8)
+
+        normal_run_pause.wait()
+
+        if pedestrian_active.is_set():
+            print("\nSkipping Color 2: Green due to pedestrian sequence")
+            continue
+        else:
+            if input_received2.is_set():
+                t1_3.start()
+                t1_3.join()
+                input_received2.clear()
+                break
+            elif t1_2.is_alive():
+                print("No 1")
+                input_received2.clear()
+            t1_1.join()
+
+            print("\nColor 2: Green")
+            gled2.on()
+            time.sleep(5)
+            gled2.off()
+
+        print("\nColor 2: Yellow")
+        yled2.on()
+        time.sleep(2)
+        yled2.off()
+        break
+
+def pedestrianrun():
+    while True:
+        pedestrian_active2.set()
+        normal_run_pause2.clear()
+        
+        print("Color 2: Pedestrian On")
+        pled2.on()
+        print("Color 2: Green")
+        gled2.on()
+        print("Color 1: Red")
+        led.on()
+        time.sleep(5)
+        pled2.off()
+        gled2.off()
+        print("Color 2: Yellow")
+        yled2.on()
+        time.sleep(2)
+        yled2.off()
+        led.off()
+
+        break
+    pedestrian_active2.clear()
+    normal_run_pause2.set()
+
+def pedestrianrun2():
+    while True:
+        pedestrian_active.set()
+        normal_run_pause.clear()
+        print("\Color 2: Red")
+        rled.on()
+        print("\nColor: Green")
+        gled.on()
+        print("Pedestrian 1: On")
+        pled1.on()
+        time.sleep(5)
+        gled.off()
+        pled1.off()
+        print("\nColor 2: Yellow")
+        yled.on()
+        time.sleep(2)
+        yled.off()
+        rled.off()
+        led.on()
+        print("Color 2: Green")
+        gled2.on()
+        time.sleep(5)
+        gled2.off()
+        print("Color 2: Yellow")
+        yled2.on()
+        time.sleep(2)
+        yled2.off()
+        led.off()
+
+        break
+    
+    pedestrian_active.clear()
+    normal_run_pause.set()
+
+def normalrun():
+    while True:
+        t4 = threading.Thread(target=pedestrianrun2, daemon=True)
+        t3 = threading.Thread(target=normalrun2, daemon=True)
+        t2 = threading.Thread(target=red_light, daemon=True)
+        t1 = threading.Thread(target=cross_input, daemon=True)
+
+        normal_run_pause.set()
+        t3.start()
+
+        print("\nColor: Green")
+        gled.on()
+        print("\nPedestrian 1: On")
+        time.sleep(5)
+        gled.off()
+        print("Pedestrian 1: Off")
+
+        print("\nColor: Yellow")
+        yled.on()
+        time.sleep(2)
+        yled.off()
+
+        t2.start()
+        t1.start()
+
+        t1.join(timeout=8)
+
+        if input_received.is_set():
+            print("\nActive")
+            t4.start()
+            t4.join()
+            input_received.clear()
+        elif t1.is_alive():
+            print("\nNo")
+            input_received.clear()
+
+        t2.join()
+        t3.join()
+
+normalrun()
+    </code></pre>
+</body>
+</html>
