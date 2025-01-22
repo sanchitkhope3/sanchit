@@ -135,13 +135,190 @@ leftturn1 = LED(6)
 crossbutton = Button(5)
 
 def leftturn():
+     print("Color 1: Left Turn On")
+     leftturn1.on()
+     time.sleep(2)
+     print("Color 1: Left Turn Off")
+     leftturn1.off()
+     
+     
+def leftturngreen():
+    print("\nColor: Green")
+    gled.on()
+    print("\nPedestrian 1: On")
+    time.sleep(5)
+    gled.off()
+    print("Pedestrian 1: Off")
+
+def leftturn2():
     print("Color 1: Left Turn On")
     leftturn1.on()
     time.sleep(2)
     print("Color 1: Left Turn Off")
     leftturn1.off()
+    leftturndone.set()
+     
+     
+def leftturngreen2():
+    pled1red.off()
+    print("\nColor: Green")
+    gled.on()
+   
+    leftturndone.wait()
+    pled1.on()
+           
+    print("\nPedestrian 1: On")
+    time.sleep(3)
+    gled.off()
+    print("Pedestrian 1: Off")
+    pled1.off()
+    leftturndone.clear()
+    pled1red.on()
+   
+def aftercrossing2():
+    print("Color 2: Green")
+    gled2.on()
+    print("Color 2: Pedestrian On")
+    pled2red.off()
+    pled2.on()
+    time.sleep(5)
+    pled2.off()
+    pled2red.on()
+    gled2.off()
+    print("Color 2: Yellow")
+    yled2.on()
+    time.sleep(2)
+    yled2.off()
+    led.off()
+   
+def cross_input():
+    while True:
+        if crossbutton.is_pressed:
+            input_received.set()  # Set the event to signal input has been received)
+            print("\nCrossing Signal Recieved")
+           
+def red_light():
+    print("\nColor: Red")
+    pled2.on()
+    led.on()
+    time.sleep(8)
+    led.off()
+    pled2.off()
 
-# (Code truncated for brevity)
+def normalrun2():
+    while True:
+        pled1red.on()
+        pled2red.on()
+        print("\nColor 2: Red")
+        rled.on()
+        time.sleep(8)
+        rled.off()
+
+        # Wait if pedestrian sequence is active
+        normal_run_pause.wait()
+
+        # Skip "Color 2: Green" if pedestrian lights were just active
+        if pedestrian_active.is_set():
+            print("\nSkipping Color 2: Green due to pedestrian sequence")
+            continue
+        else:
+            print("\nColor 2: Green")
+            gled2.on()
+            time.sleep(5)
+            gled2.off()
+            # Skip the green phase entirely
+
+        print("\nColor 2: Yellow")
+        yled2.on()
+        time.sleep(2)
+        yled2.off()
+        break
+
+
+def pedestrianrun2():
+    while True:
+        pedestrian_active.set()  # Signal pedestrian lights are active
+        normal_run_pause.clear()  # Pause normalrun2
+        t1_2 = threading.Thread(target=aftercrossing2, daemon=True)
+        t1_3 = threading.Thread(target=leftturn2, daemon=True)
+        t1_4 = threading.Thread(target=leftturngreen2, daemon=True)
+        print("\Color 2: Red")
+        rled.on()
+        t1_4.start()
+        t1_3.start()
+        t1_4.join()
+       
+       
+        print("\nColor 2: Yellow")
+        yled.on()
+        time.sleep(2)
+        yled.off()
+        rled.off()
+        led.on()
+       
+       
+        t1_2.start()
+        t1_2.join()
+        t1_3.join()
+       
+       
+        break
+       
+   
+    pedestrian_active.clear()  # Reset pedestrian active signal
+    normal_run_pause.set()  # Resume normalrun2
+   
+
+
+def normalrun():
+    while True:
+        # Creating threads
+        t6 = threading.Thread(target=leftturn, daemon=True)
+        t5 = threading.Thread(target=leftturngreen, daemon=True)
+        t4 = threading.Thread(target=pedestrianrun2, daemon=True)
+        t3 = threading.Thread(target=normalrun2, daemon=True)
+        t2 = threading.Thread(target=red_light, daemon=True)
+        t1 = threading.Thread(target=cross_input, daemon=True)
+
+        # Start the second traffic light thread
+        normal_run_pause.set()  # Ensure normalrun2 is active initially
+        t3.start()
+        pled1red.on()
+        pled2red.on()
+        # Green light for pedestrian 1r
+        t5.start()
+        t6.start()
+        t5.join()
+
+        # Yellow light
+        print("\nColor: Yellow")
+        yled.on()
+        time.sleep(2)
+        yled.off()
+
+        # Start red light and cross input threads
+        t2.start()
+        t1.start()
+
+        # Wait for input with a timeout of 8 seconds
+        t1.join(timeout=8)
+
+        # Check if input was received within the timeout
+        if input_received.is_set():
+            print("\nActive")
+            t4.start()  # Start pedestrian sequence
+           
+            t4.join()   # Wait for pedestrian sequence to complete
+            input_received.clear()  # Reset the event
+        elif t1.is_alive():
+            print("\nNo")
+            input_received.clear()  # Reset the event if no input was received
+
+        # Ensure red light and second traffic light threads complete
+        t2.join()
+        t3.join()
+        t6.join()
+
 normalrun()
     </code></pre>
   </div>
