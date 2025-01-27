@@ -88,13 +88,27 @@
       <li>It also prints the color it is on, inside the terminal, so you can also keep track of it there.</li>
     </ul>
     <p>
-      This project may look simple; however, the timing of the sequences is quite complex. 
+      This project may look simple; however, the timing of the sequences is quite complex. I utilized red pedestrian lights for my pedestrian lights, however with constraints regarding the amount of LEDs, I could not include it in my physical modle. However this functionality is included inside my code. 
       To control the LEDs, I used <code>GPIOZero</code>, which is a simpler form of <code>RPI.GPIO</code>.
     </p>
     <hr>
     <h2>Inputs</h2>
     <p>My inputs were <strong>4 push buttons</strong> on the poles, acting as pedestrian buttons.</p>
     <hr>
+    <h2>How does the code work</h2>
+    <p>
+      My code works mainly off of multithreading, a module that lets me call and run functions concurrently with the main code. My main usages of multithreading are with the pedestrian inputs and the red lights. When the main traffic light (with the left turn signal) turns red, the button starts to accept an input, which calls another function, called Pedestrian Run 2, which has the pedestrian turn signals. To synchronize this function with the main sequence, I utilize another function called after crossing. Another usage of multithreading in my code is with the left-turn lights, which run concurrently with the green lights.
+    </p>
+    <p>
+      Another feature of multithreading I utilized is the usage of flags. Flags are basically the same as variables; however, they only have 2 options: true or false. When a flag is set, the value is set to true, and we can manipulate this feature to wait for some function to finish. I utilized this feature to wait for the pedestrian light sequence to finish to restart the normal traffic sequence. I also utilized it to read if the pedestrian buttons had been pressed or not. This is the basics of my code.
+    </p>
+    <hr>
+    <h2>Improvements</h2>
+    <p>
+    With this project I had many improvements that I can name after completing it. The main one would have to be adding sensors and functionality to the projects. Over the last 2 weeks, I had been busy debugging my original code, so that I could not use the ultrasonic distance sensor to sense a car for the red light. I had tried to make the code for it; however, with my code being filled with errors and bugs, I did not have any time left. Next time I would also improve my wiring with more organization. At the start, my wiring was not spread out, which created a lot of confusion around whether I was plugging the wires into the right place. This caused me to come to class on Monday with an unfinished project. However, when I went home that day, I redid all of the wiring and made it more organized. To improve this further, I would like to put the wiring of the pedestrian light in the part of the terminal that is closer to me. Which would let me complete the project earlier. Finally, I would have loved to add red pedestrian lights to my physical project. In my code, there is the functionality of the pedestrian red light; however, due to material restrictions, I was limited to only enough wire for the white pedestrian lights. In the future I would bring enough material to adequately finish my project.
+    </p>
+    <hr>
+    
     <h3>Final Image</h3>
     <img src="videos/Traffic-Light-Photo.jpg" alt="Traffic-Light-Photo" style="width: 300px; height: 380px">
     <hr>
@@ -112,6 +126,8 @@
     <hr>
     <h2>Python Code</h2>
     <pre><code>
+Python
+      
 import time
 import threading
 from gpiozero import LED, Button
