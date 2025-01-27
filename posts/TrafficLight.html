@@ -92,15 +92,18 @@
       To control the LEDs, I used <code>GPIOZero</code>, which is a simpler form of <code>RPI.GPIO</code>.
     </p>
     <hr>
-    <h2>Inputs</h2>
+    <h2>Inputs & Outputs</h2>
     <p>My inputs were <strong>4 push buttons</strong> on the poles, acting as pedestrian buttons.</p>
+    <p>
+      My Outputs were <strong>14 Traffic Light LEDs</strong> and <strong>8 pedestrian LEDs</strong>
+    </p>
     <hr>
     <h2>How does the code work</h2>
     <p>
-      My code works mainly off of multithreading, a module that lets me call and run functions concurrently with the main code. My main usages of multithreading are with the pedestrian inputs and the red lights. When the main traffic light (with the left turn signal) turns red, the button starts to accept an input, which calls another function, called Pedestrian Run 2, which has the pedestrian turn signals. To synchronize this function with the main sequence, I utilize another function called after crossing. Another usage of multithreading in my code is with the left-turn lights, which run concurrently with the green lights.
+      My code works mainly off of <strong>multithreading</strong>, a module that lets me call and run functions concurrently with the main code. My main usages of multithreading are with the pedestrian inputs and the red lights. When the main traffic light (with the left turn signal) turns red, the button starts to accept an input, which calls another function, called Pedestrian Run 2, which has the pedestrian turn signals. To synchronize this function with the main sequence, I utilize another function called after crossing. Another usage of multithreading in my code is with the left-turn lights, which run concurrently with the green lights.
     </p>
     <p>
-      Another feature of multithreading I utilized is the usage of flags. Flags are basically the same as variables; however, they only have 2 options: true or false. When a flag is set, the value is set to true, and we can manipulate this feature to wait for some function to finish. I utilized this feature to wait for the pedestrian light sequence to finish to restart the normal traffic sequence. I also utilized it to read if the pedestrian buttons had been pressed or not. This is the basics of my code.
+      Another feature of <strong></strong>multithreading</strong> I utilized is the usage of flags. Flags are basically the same as variables; however, they only have 2 options: true or false. When a flag is set, the value is set to true, and we can manipulate this feature to wait for some function to finish. I utilized this feature to wait for the pedestrian light sequence to finish to restart the normal traffic sequence. I also utilized it to read if the pedestrian buttons had been pressed or not. This is the basics of my code.
     </p>
     <hr>
     <h2>Improvements</h2>
