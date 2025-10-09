@@ -78,16 +78,21 @@
       margin: 10px;
       height: 400px;
     }
-    .graphimage {
-      display: inline-block;
-      vertical-align: middle;
-      max-width: none;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      margin: 10px;
-      height: 400px;
-    }
-    }
+  .graphimage {
+  display: flex;           
+  flex-wrap: wrap;         
+  justify-content: center; 
+  gap: 10px;               
+  margin: 20px 0;
+}
+
+.graphimage img {
+  height: 400px;
+  width: auto;             
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
   </style>
 </head>
 
