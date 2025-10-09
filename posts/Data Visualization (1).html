@@ -96,16 +96,43 @@
 
     <h2>Abstract</h2>
     <p>
-      In this report, we explore <strong>Anscombe’s Quartet</strong> using Python, focusing on how summary statistics can hide significant differences between datasets.
-      Through coding and visualization techniques in <code>Matplotlib</code>, <code>Seaborn</code>, <code>Pandas</code>, and <code>Statsmodels</code>,
-      we analyze four datasets that share identical summary statistics but have very different distributions. This project highlights the importance of exploratory data analysis (EDA) and visualization in uncovering outliers, nonlinear relationships, and data inconsistencies.
+In this report we dive deeper into statistics and follow proper exploratory data visualization techniques in order to understand Anscombe’s Quartet and the four datasets that come with it. We
+create several graphs, like scatterplot graphs, violin plots, box plots, and regression lines, in order
+to see how the datasets are seen on a visual scale. The goal of this report is to understand how
+simple summary statistics about topics such as mean, variance, standard deviation, covariance,
+correlation, regression coefficients, and R² do not show the entire picture.
+</p>
+<p>
+Using several Python modules like matplotlib, seaborn, numpy, and pandas, we can clearly calculate
+both the visual graphs and the statistical summaries in order to gain full insights on what this data
+represents. Some datasets differ from others, with some with linear trends, some nonlinear, and
+some with no active trends found. This report lets us understand the importance of both aspects
+of understanding data, allowing analysts to find patterns, mistakes, and issues in large data sets
+through both summaries and a visual output through code, which can be easily altered to process
+a larger amount of data.
     </p>
 
     <h2>Introduction</h2>
     <p>
-      Anscombe’s Quartet consists of four datasets that are nearly identical in their summary statistics—mean, variance, correlation, and regression coefficients—yet look dramatically different when graphed. 
-      This demonstrates that statistical summaries alone are insufficient for understanding the true nature of data.
-      Exploratory Data Analysis (EDA) combines statistical calculations and visualization to reveal hidden trends, outliers, and data patterns that could otherwise be missed.
+      Anscombe’s Quartet is one of the most famous examples given in many statistics courses, and it
+      represents one of the main issues that many analysts may face. Anscombe’s Quartet is made up of
+      4 datasets, each being carefully made to present the same exact statistical summaries and values,
+      meaning that the mean, variance, correlation, and regression coefficients are all the same. If an
+      analyst only looked at the statistical values, without using any other methods to cross-check, they
+      would never be able to find any anomalies, outliers, and discrepancies within the datasets, which
+      would lead to issues in future projects.
+      </p>
+        
+      <p>
+        This is where the exploratory data analysis part of the assignment comes in. Exploratory Data
+        Analysis is a mixture of both summary statistics and data visualization, made to solve the exact
+        issue that Anscombe’s Quartet exemplifies. It finds statistical summaries and also helps to find
+        outliers, understand variables, and see patterns within the distribution of the different datasets.
+        Exploratory data analysis is used in both science- and business-based fields, allowing for greater
+        understanding of variables with projects and the financial markets to reduce loss, process risks,
+        and understand relationships that would be overlooked through traditional summaries. Combining
+        both code and statistics, it makes understanding these relationships all the easier and provides fast
+        understanding of the correlation of two or more variables in a dataset.
     </p>
 
     <h2>Methods</h2>
@@ -137,38 +164,42 @@
       Residual plots helped show how well the regression line fit each dataset and where outliers caused distortion.
     </p>
 
-    <h2>Interpretation</h2>
+    <h2>Interpretation And Final Thoughts</h2>
     <p>
-      Although all four datasets share nearly identical statistical summaries, the visualizations reveal stark differences:
+        Anscombe’s Quartet is a great example of how summary statistics cannot always be relied on and
+        how they may be holding out on information. Through the coding and graphing of these data
+        points along the different graphs, we can see that they are very different. Though, when you look
+        at the statistics summary given at the top, you can also see that the values are nearly identical,
+        which could pose potential flaws and errors in the future if not addressed. In particular, many
+        different parts can be noticed that the summary misses out on   
     </p>
     <ul>
-      <li><strong>Dataset I</strong> – Linear relationship, well-fitted regression line.</li>
-      <li><strong>Dataset II</strong> – Curved (nonlinear) pattern missed by regression.</li>
-      <li><strong>Dataset III</strong> – Outlier at (13, 12.74) heavily skews the regression slope.</li>
-      <li><strong>Dataset IV</strong> – Nearly constant X values; regression defined mostly by one point.</li>
+      <li><strong>Dataset II</strong> – shows that it is a non-linear curve, which is quite different from Dataset I, which
+is fairly linear. Despite this, you can also see how the summary statistics fail to point this
+out.</li>
+      <li><strong>Dataset III</strong> – has an outlier at (13, 12.74), which causes the regression line to grow steeper,
+which cannot be seen through the statistics either, even though the rest of it is extremely
+linear.</li>
+      <li><strong>Dataset IV</strong>- mainly has an X value of 8; however, the statistics don’t show this either.</li>
     </ul>
     <p>
-      These examples demonstrate that relying solely on summary statistics can lead to false conclusions.
-      Visualization reveals outliers, patterns, and nonlinearity that numeric summaries miss.
+      These variations show how, even though the visuals are very different, the statistical summaries fail to show this. Relying purely on summarized portions of information like this is what could cause larger issues to proceed in the future, especially if this data is being used on a larger scale
     </p>
 
     <h2>Real-World Application</h2>
     <p>
-      In real life, this concept applies to scenarios like analyzing national income data, where a few extremely high earners can distort averages and hide inequality.
-      Similarly, the <strong>Challenger Disaster</strong> is an example where poor data interpretation—ignoring outliers in O-ring temperature data—led to catastrophic failure.
-      These cases show how visual and statistical EDA together are essential for accurate, ethical decision-making.
-    </p>
+A real-life example of this is how statistics like this are used in getting census and income statistics
+for nations. When a developing nation has high-income outliers, the overall average and GDP of that nation would be higher than they actually are, which impacts income inequality and restricts funds from being donated to the specific country for aid. Statistics affect the lives of people in many small but meaningful ways, and having a truthful and complete understanding of these specific figures allows the right decisions to be made at the right time. Misinformation about important statistics could mean the difference between success and failure for many, as it did in the Challenger Disaster, where the right information wasn’t presented or analyzed properly/accurately, leading to huge losses overall.
+ </p>
 
     <h2>Conclusion & Next Steps</h2>
     <p>
-      Anscombe’s Quartet reminds us that data must always be visualized alongside statistical summaries to capture its full story.
-      Through this project, we learned that visual exploration helps identify errors, outliers, and underlying structures hidden by averages.
-      Future work could include applying these same techniques to larger, real-world datasets using advanced visualization tools like <code>Plotly</code> or <code>Dash</code> for interactive EDA.
+    Through this report, the importance of truthful and proper data analysis came into perspective, as well as a crucial understanding of modern exploratory data analysis software. For future steps, it would be to apply this learning forward and understand what else we can do with it in fields like engineering, healthcare, and business, and how management of data and other visualization techniques could be used through modules like Seaborn and Matplotlib.
     </p>
 
     <hr>
     <p><strong>Tools Used:</strong> Python, Pandas, NumPy, Matplotlib, Seaborn, Statsmodels</p>
-    <p><strong>Author:</strong> S. Khope | <strong>Course:</strong> Data Visualization Project | <strong>Date:</strong> October 2025</p>
+    <p><strong>Author:</strong> S. Khope | <strong>Course:</strong> Data Visualization Project | <strong>Date: 8</strong> October 2025</p>
   </div>
 </body>
 </html>
