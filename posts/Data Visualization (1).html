@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Real World Vending Machine</title>
+  <title>Anscombe’s Data Visualization Report</title>
   <style>
     body {
-      font-family: 'Confortaa', sans-serif;
+      font-family: 'Comfortaa', sans-serif;
       margin: 0;
+      background-color: #fafafa;
+      color: #333;
+      line-height: 1.6;
     }
     .navbar {
       background-color: #333;
@@ -24,24 +27,26 @@
       background-color: #ddd;
       color: black;
     }
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-    }
     .content {
       padding: 20px;
+      max-width: 1000px;
+      margin: auto;
     }
-    .image-container {
+    h1, h2, h3 {
+      color: #111;
+    }
+    h1 {
       text-align: center;
-      margin: 20px 0;
+      margin-bottom: 0;
     }
-    .image-container img {
-      max-width: 80%;
-      border: 1px solid #ddd;
-      padding: 5px;
-      border-radius: 5px;
+    .author {
+      text-align: center;
+      color: #555;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #ddd;
+      margin: 20px 0;
     }
     pre {
       background-color: #f4f4f4;
@@ -55,94 +60,115 @@
       padding: 2px 4px;
       border-radius: 4px;
     }
-    h1, h2, h3 {
-      color: #333;
+    .scroll-container {
+      background-color: white;
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
     }
-    hr {
-      border: 0;
-      border-top: 1px solid #ddd;
-      margin: 20px 0;
+    .scroll-container img {
+      display: inline-block;
+      vertical-align: middle;
+      max-width: none;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin: 10px;
+      height: 400px;
     }
-.scroll-container {
-  background-color: white;
-  overflow-x: auto;
-  overflow-y: hidden;
-  white-space: nowrap;
-  padding: 10px;
-}
-
-.scroll-container img {
-  display: inline-block;
-  vertical-align: middle;
-  max-width: none;
-}
-
-
   </style>
 </head>
+
 <body>
   <div class="navbar">
     <a href="../index.html">Home</a>
     <a href="../about.html">About</a>
     <a href="../posts.html">Projects</a>
   </div>
+
   <div class="content">
-    <h1>TEJ Traffic Light</h1>
-    <p class="author"><strong>By:</strong> Sanchit Khope</p>
+    <h1>Anscombe’s Data Visualization Report</h1>
+    <p class="author"><strong>By:</strong> S. Khope</p>
+    <p class="author">Date: October 2025</p>
     <hr>
-    <h2>Explanation of the Project</h2>
+
+    <h2>Abstract</h2>
     <p>
-      Our task for this project was to visualize data using Jupyter Notebook, and using modules like Htoplib, and numpy to visualizat the data properly and effectively.
+      In this report, we explore <strong>Anscombe’s Quartet</strong> using Python, focusing on how summary statistics can hide significant differences between datasets.
+      Through coding and visualization techniques in <code>Matplotlib</code>, <code>Seaborn</code>, <code>Pandas</code>, and <code>Statsmodels</code>,
+      we analyze four datasets that share identical summary statistics but have very different distributions. This project highlights the importance of exploratory data analysis (EDA) and visualization in uncovering outliers, nonlinear relationships, and data inconsistencies.
+    </p>
+
+    <h2>Introduction</h2>
+    <p>
+      Anscombe’s Quartet consists of four datasets that are nearly identical in their summary statistics—mean, variance, correlation, and regression coefficients—yet look dramatically different when graphed. 
+      This demonstrates that statistical summaries alone are insufficient for understanding the true nature of data.
+      Exploratory Data Analysis (EDA) combines statistical calculations and visualization to reveal hidden trends, outliers, and data patterns that could otherwise be missed.
+    </p>
+
+    <h2>Methods</h2>
+    <p>
+      The analysis was conducted using Python with <code>Matplotlib</code> and <code>Seaborn</code> for visualization, <code>Pandas</code> for data management, and <code>Statsmodels</code> for regression analysis.
+      Summary statistics were calculated for each dataset, including:
     </p>
     <ul>
-      <li>There are 3 columns for X, X123, X4, and corresponding Y values to go along side this data, Y1, Y2, Y3, Y4.</li>
+      <li><strong>Mean</strong> – Average of X and Y values</li>
+      <li><strong>Variance</strong> – How spread apart the data values are</li>
+      <li><strong>Standard Deviation</strong> – How far values deviate from the mean</li>
+      <li><strong>Covariance</strong> – How X and Y move together</li>
+      <li><strong>Correlation</strong> – The strength of the relationship between X and Y</li>
+      <li><strong>Linear Regression</strong> – Line of best fit between points</li>
+      <li><strong>R²</strong> – How well the regression line fits the data</li>
     </ul>
-    <ul>
-      There are several more requirements for this porject but this is the first st, I will add those additions as I move forward with the projct.
-    </ul>
-    
+
+    <h2>Visualizations</h2>
+    <p>The following graphs were created to compare all four datasets:</p>
     <div class="scroll-container">
-  <img src="https://raw.githubusercontent.com/sanchitkhope3/sanchit/542ec06de6dfa210bdd09aac4b351dd6b2fc4b4c/posts/images/Data%20Visualization/Y1.png" alt="Y1" style="width:500px; height:500px; margin:20px;">
-  <img src="https://raw.githubusercontent.com/sanchitkhope3/sanchit/542ec06de6dfa210bdd09aac4b351dd6b2fc4b4c/posts/images/Data%20Visualization/Y2.png" alt="Y2" style="width:500px; height:500px; margin:20px;">
-  <img src="https://raw.githubusercontent.com/sanchitkhope3/sanchit/542ec06de6dfa210bdd09aac4b351dd6b2fc4b4c/posts/images/Data%20Visualization/Y3.png" alt="Y3" style="width:500px; height:500px; margin:20px;">
-  <img src="https://raw.githubusercontent.com/sanchitkhope3/sanchit/542ec06de6dfa210bdd09aac4b351dd6b2fc4b4c/posts/images/Data%20Visualization/Y4.png" alt="Y4" style="width:500px; height:500px; margin:20px;">
-</div>
-  
-    <h2>Python Code</h2>
-    <pre><code>
-Python in Htoplib
-      import matplotlib.pyplot as plt
-import numpy as np
+      <img src="https://raw.githubusercontent.com/sanchitkhope3/sanchit/main/posts/images/Data%20Visualization/Y1.png" alt="Dataset I">
+      <img src="https://raw.githubusercontent.com/sanchitkhope3/sanchit/main/posts/images/Data%20Visualization/Y2.png" alt="Dataset II">
+      <img src="https://raw.githubusercontent.com/sanchitkhope3/sanchit/main/posts/images/Data%20Visualization/Y3.png" alt="Dataset III">
+      <img src="https://raw.githubusercontent.com/sanchitkhope3/sanchit/main/posts/images/Data%20Visualization/Y4.png" alt="Dataset IV">
+    </div>
 
-x = np.array([10,8,13,9,11,14,6,4,12,7,5])
-y = np.array([8.04,6.95,7.58,8.81,8.33,9.96,7.24,4.26,10.84,4.82,5.68])
+    <p>
+      Additional box plots and violin plots were created to visualize the distribution of X and Y values across the four datasets.
+      Residual plots helped show how well the regression line fit each dataset and where outliers caused distortion.
+    </p>
 
-plt.scatter(x,y)
-plt.xlabel("X123")
-plt.ylabel("Y1")
-plt.show()
+    <h2>Interpretation</h2>
+    <p>
+      Although all four datasets share nearly identical statistical summaries, the visualizations reveal stark differences:
+    </p>
+    <ul>
+      <li><strong>Dataset I</strong> – Linear relationship, well-fitted regression line.</li>
+      <li><strong>Dataset II</strong> – Curved (nonlinear) pattern missed by regression.</li>
+      <li><strong>Dataset III</strong> – Outlier at (13, 12.74) heavily skews the regression slope.</li>
+      <li><strong>Dataset IV</strong> – Nearly constant X values; regression defined mostly by one point.</li>
+    </ul>
+    <p>
+      These examples demonstrate that relying solely on summary statistics can lead to false conclusions.
+      Visualization reveals outliers, patterns, and nonlinearity that numeric summaries miss.
+    </p>
 
-x = np.array([10,8,13,9,11,14,6,4,12,7,5])
-y = np.array([9.14, 8.14, 8.74,8.77,9.26,8.1,6.13,3.1,9.13,7.26,4.74])
-plt.scatter(x,y)
-plt.xlabel("X123")
-plt.ylabel("Y2")
-plt.show()
+    <h2>Real-World Application</h2>
+    <p>
+      In real life, this concept applies to scenarios like analyzing national income data, where a few extremely high earners can distort averages and hide inequality.
+      Similarly, the <strong>Challenger Disaster</strong> is an example where poor data interpretation—ignoring outliers in O-ring temperature data—led to catastrophic failure.
+      These cases show how visual and statistical EDA together are essential for accurate, ethical decision-making.
+    </p>
 
-x = np.array([10,8,13,9,11,14,6,4,12,7,5])
-y = np.array([7.46,6.77,12.74,7.11,7.81,8.84,6.08,5.39,8.15,6.42,5.73])
-plt.scatter(x,y)
-plt.xlabel("X123")
-plt.ylabel("Y3")
-plt.show()
+    <h2>Conclusion & Next Steps</h2>
+    <p>
+      Anscombe’s Quartet reminds us that data must always be visualized alongside statistical summaries to capture its full story.
+      Through this project, we learned that visual exploration helps identify errors, outliers, and underlying structures hidden by averages.
+      Future work could include applying these same techniques to larger, real-world datasets using advanced visualization tools like <code>Plotly</code> or <code>Dash</code> for interactive EDA.
+    </p>
 
-x = np.array([8,8,8,8,8,8,8,19,8,8,8])
-y = np.array([6.58,5.76,7.71,8.84,8.47,7.04,5.25,12.5,5.56,7.91,6.89])
-plt.scatter(x,y)
-plt.xlabel("X4")
-plt.ylabel("Y4")
-plt.show()
-      </code></pre>
+    <hr>
+    <p><strong>Tools Used:</strong> Python, Pandas, NumPy, Matplotlib, Seaborn, Statsmodels</p>
+    <p><strong>Author:</strong> S. Khope | <strong>Course:</strong> Data Visualization Project | <strong>Date:</strong> October 2025</p>
   </div>
 </body>
 </html>
