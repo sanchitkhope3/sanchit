@@ -1,1 +1,247 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hybrid OTTPA Super Mini Modified Tractor Design</title>
+  <style>
+    body {
+      font-family: 'Comfortaa', sans-serif;
+      margin: 0;
+      background-color: #fafafa;
+      color: #333;
+      line-height: 1.6;
+    }
+    .navbar {
+      background-color: #333;
+      overflow: hidden;
+    }
+    .navbar a {
+      float: left;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+    .navbar a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    .content {
+      padding: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h1, h2, h3 {
+      color: #111;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 0;
+    }
+    .author {
+      text-align: center;
+      color: #555;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #ddd;
+      margin: 20px 0;
+    }
+    pre {
+      background-color: #f4f4f4;
+      border: 1px solid #ddd;
+      padding: 10px;
+      overflow-x: auto;
+    }
+    code {
+      color: #050505;
+      background-color: #f9f2f4;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+    .scroll-container {
+      background-color: white;
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .scroll-container img {
+      display: inline-block;
+      vertical-align: middle;
+      max-width: none;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin: 10px;
+      height: 400px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+      border: 1px solid #ddd;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #333;
+      color: white;
+    }
+    .graphimage {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .graphimage img {
+      height: 400px;
+      width: auto;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="navbar">
+    <a href="../index.html">Home</a>
+    <a href="../about.html">About</a>
+    <a href="../posts.html">Projects</a>
+  </div>
+
+  <div class="content">
+    <h1>Hybrid OTTPA Super Mini Modified Tractor Design</h1>
+    <p class="author"><strong>Phase 1 - Research and System Concept</strong></p>
+    <p class="author">Engineering Design, Fall 2025</p>
+    <hr>
+
+    <div style="text-align: center; margin: 20px 0;">
+      <a href="https://github.com/sanchitkhope3/TractorSegwayProject/blob/910f597346a16c1c5e06fd60f7e504e90eaab799/Segway_Project.pdf" target="_blank">
+        <button style="padding:10px 20px; font-size:16px; border-radius:6px; border:none; background-color:#333; color:white; cursor:pointer;">
+          Download Tufte PDF Here
+        </button>
+      </a>
+    </div>
+
+    <h2>Project Overview</h2>
+    <p>Through this project, our goal is to make a mini modified hybrid tractor, designing it to be compliant with the rules and regulations of the Ontario Truck & Tractor Pulling Association, and designing it to make it competitive. In this project we have divided it into 3 phases, to divide the work within the group, and to stay on track. The first phase is the conceptualization, planning, and research of the tractor, with no real calculations. Through this phase we want to have the entire tractor planned out, with the systems, and exactly what we want to make. This gives us a leg up from, making us prepared to handle any seen and unforeseen issues as we move onto phase 2. Phase 2 will be the calculation and CAD design of this project. Phase 3 being the reflection and documentation of the project.</p>
+
+    <p>Our main objective within this project is to use a hybrid-drivetrain system, where a diesel generator powers a battery pack. This battery pack will be connected to an electric motor, providing instant torque rather than the latter, where the diesel motor will be connected to the wheels instead, slowing it down. This allows us to be more competitive if we decide to follow through with this design in the actual competition. The motors should create a force around 1500 Nm, which would allow the tractor to rest on its rear wheels, which is crucial for a tractor pull competition.</p>
+
+    <p>The rest of this document will detail phase one, with columns for necessities, nice-to-haves, detailed structure of the systems in the tractor (frame, drivetrain, electrical, and safety), research on what type of motor would work best/why it would work best, and some concept sketches. Through this phase, we can have a solid bedrock for the designing and CAD portions.</p>
+
+    <h2>OTTPA Rules & Constraints</h2>
+    <p>To make the competitions fair, safe, and equal for all participants, the OTTPA has created rules and regulations that all competitors must follow to be able to function. These rules heavily impact the design of the tractor, but also provide guidance on how we could innovate to get better designs and a more efficient machine.</p>
+
+    <table>
+      <thead>
+        <tr><th>Type of Constraint</th><th>Requirements</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Weight and Size Limits</td><td>Maximum Weight: 2050 lbs; Maximum length forward of rear wheel centerline: 8 ft; Maximum Tread Width: 6 ft</td><td>Compliant with OTTPA standards</td></tr>
+        <tr><td>Tires</td><td>18.4 x 16.1 allowed; no radicals</td><td>Standard pull tires</td></tr>
+        <tr><td>Hitch and Drawbar</td><td>Minimum 6” from rear axle; Maximum 13” from top of hitching device to ground</td><td>Fits pulling geometry</td></tr>
+        <tr><td>Drivetrain and Transmission</td><td>Reverse Lockout Required; Driveshaft shielding: full length, minimum 5/16” steel or 3/8” aluminum, SFI bellhousing</td><td>Meets safety requirements</td></tr>
+        <tr><td>Electrical</td><td>Kill switch, Battery Disconnect, Air Shut-Off</td><td>Included in design</td></tr>
+        <tr><td>Safety</td><td>Roll Cage, Seatbelts, Neck Brace, Fire Extinguisher, Helmet</td><td>Fully compliant</td></tr>
+        <tr><td>Fenders and Skid Plates</td><td>Fenders cover tires, Skid plate supports front weight</td><td>CAD layout includes these</td></tr>
+      </tbody>
+    </table>
+
+    <h2>System Overview</h2>
+    <p>The systems of the tractor include Frame, Drivetrain, Electrical, and Safety.</p>
+
+    <h3>Frame</h3>
+    <p>Responsibilities for a frame is to withhold the parts of other systems and provide structural support. The other systems that the frame helps to hold are the electrical systems, drivetrain, safety, and is the most important part of the tractor.</p>
+    <div class="graphimage">
+      <img src="images/Frame.png" alt="Figure 1: Frame structure">
+    </div>
+
+    <h3>Drivetrain</h3>
+    <p>Electric drive motor: An electric drive motor is a machine that converts electrical energy (from a battery or generator) into mechanical energy (rotational motion). In electric tractors, this motor replaces the traditional diesel engine.</p>
+    <ul>
+      <li>Stator – the stationary part that creates a magnetic field.</li>
+      <li>Rotor – the rotating part inside the stator that turns when magnetic forces act on it.</li>
+      <li>Power electronics – devices that control how much voltage and current go to the motor, managing speed and torque.</li>
+    </ul>
+    <div class="graphimage">
+      <img src="images/Drivetrain.png" alt="Figure 2: Drivetrain schematic">
+    </div>
+
+    <h3>Electrical</h3>
+    <ul>
+      <li>Diesel generator: Converts diesel fuel into electrical power (usually AC). Feeds the system or charges the battery.</li>
+      <li>Rectifier / DC Converter: Converts generator AC to DC for charging or feeding inverter.</li>
+      <li>Battery Pack: Stores the electricity to use in the electric motor to generate instant torque, accelerations, and basically fuels it.</li>
+      <li>Sensors/Logic: Uses raspberry pi’s to monitor speed, voltage, current, and balance. Which lets the driver have more control over the motor and the rest of the vehicle.</li>
+    </ul>
+    <div class="graphimage">
+      <img src="images/electrical system.png" alt="Figure 3: Electrical system">
+    </div>
+
+    <h3>Safety</h3>
+    <ul>
+      <li>Roll Cage (SFI 47.3 Rated): to protect the driver from any rolling accidents, must be SFI 47.3 rated, which is a third-party rating system that protects the driver.</li>
+      <li>SFI-approved safety harness - To keep the tractor driver buckled in and away from any harm that may happen to them.</li>
+      <li>Fire-Extinguisher: for any fire related mishaps.</li>
+      <li>Kill Switch/Shielding: During repairs or emergencies, moving parts of the drivetrain will be protected by shielding to stop any mishaps from happening to the drivetrain and to stop parts from being damaged, causing risk. There will also be a killswitch to stop the diesel reaching the generator and to remove power for the same reasons.</li>
+      <li>Wheelie Bar: To protect the driver in case the wheelie goes too far and it will stop the driver from falling backwards.</li>
+    </ul>
+    <div class="graphimage">
+      <img src="images/safety.png" alt="Figure 4: Safety system">
+    </div>
+
+    <div class="graphimage">
+      <img src="images/extra.png" alt="Extra Schematics">
+    </div>
+
+    <h2>Torque and Power Analysis</h2>
+    <p>Torque determines the pulling force available at the wheels. The basic equation is:</p>
+    <pre><code>T = F × r</code></pre>
+    <p>Where T is torque, F is traction force, and r is wheel radius. Assuming a traction force of 6000 N and wheel radius of 0.25 m:</p>
+    <pre><code>T = 6000 × 0.25 = 1500 Nm per wheel.</code></pre>
+    <p>This ensures sufficient pulling force to lift the front end. The diesel generator (about 20–25 kW) provides steady power while the battery handles transient peaks.</p>
+    <p>Additionally, power can be estimated using: P = (T × ω) / 9550 where P is power in kW, T is torque in Nm, and ω is rotational speed in RPM.</p>
+
+    <h2>Needs vs Nice-to-Haves</h2>
+    <table>
+      <thead>
+        <tr><th>Needs</th><th>Nice-to-Haves</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>“D” ring Hitch point (must be bright)</td><td>Adjustable hitch height...</td></tr>
+        <tr><td>Kill switch</td><td>Wheelie bar, safer wheelies when testing.</td></tr>
+        <tr><td>Air shut off...</td><td>Using different tire materials...</td></tr>
+        <tr><td>Fuel shut off</td><td>Adjustable track width</td></tr>
+        <tr><td>All safety-critical and important parts must be SFI compliant.</td><td>—</td></tr>
+        <tr><td>Fire extinguisher</td><td>—</td></tr>
+        <tr><td>Driveshaft Shielding</td><td>—</td></tr>
+        <tr><td>Transmission Shields</td><td>—</td></tr>
+        <tr><td>Fenders</td><td>—</td></tr>
+        <tr><td>Roll cage</td><td>—</td></tr>
+        <tr><td>Seatbelts</td><td>—</td></tr>
+        <tr><td>Reverse Lights</td><td>—</td></tr>
+        <tr><td>Dead-Man throttle</td><td>—</td></tr>
+        <tr><td>RPM monitoring</td><td>—</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Investigation for Hybrid Motors</h2>
+    <p>My project uses a series-hybrid (diesel-electric) drivetrain, where the diesel engine powers a generator instead of driving the wheels directly...</p>
+
+    <h2>Reflection</h2>
+    <p>This project helped me understand how hybrid systems integrate electrical, mechanical, and control engineering principles...</p>
+
+    <hr>
+    <p><strong>Team:</strong> Ivan J, Andy W, Jerry Z, Sanchit, Dhruv, Aauysh | <strong>Instructor:</strong> Mr. Andrade</p>
+  </div>
+</body>
+</html>
