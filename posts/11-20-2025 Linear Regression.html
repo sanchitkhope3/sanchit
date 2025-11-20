@@ -1,175 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Linear Regression</title>
-  <style>
-    body {
-      font-family: 'Comfortaa', sans-serif;
-      margin: 0;
-      background-color: #fafafa;
-      color: #333;
-      line-height: 1.6;
-    }
-    .navbar {
-      background-color: #333;
-      overflow: hidden;
-    }
-    .navbar a {
-      float: left;
-      color: white;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-    }
-    .navbar a:hover {
-      background-color: #ddd;
-      color: black;
-    }
-    .content {
-      padding: 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    h1, h2, h3 {
-      color: #111;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 0;
-    }
-    .author {
-      text-align: center;
-      color: #555;
-    }
-    hr {
-      border: 0;
-      border-top: 1px solid #ddd;
-      margin: 20px 0;
-    }
-    pre {
-      background-color: #f4f4f4;
-      border: 1px solid #ddd;
-      padding: 10px;
-      overflow-x: auto;
-    }
-    code {
-      color: #050505;
-      background-color: #f9f2f4;
-      padding: 2px 4px;
-      border-radius: 4px;
-    }
-    .scroll-container {
-      background-color: white;
-      overflow-x: auto;
-      overflow-y: hidden;
-      white-space: nowrap;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-    }
-    .scroll-container img {
-      display: inline-block;
-      vertical-align: middle;
-      max-width: none;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      margin: 10px;
-      height: 400px;
-    }
-  .graphimage {
-  display: flex;           
-  flex-wrap: wrap;         
-  justify-content: center; 
-  gap: 10px;               
-  margin: 20px 0;
-}
-
-.graphimage img {
-  height: 400px;
-  width: auto;             
-  border: 1px solid #ddd;
-  border-radius: 6px;
-}
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linear Regression Report</title>
+  <style>
+    body {
+      font-family: 'Comfortaa', sans-serif;
+      margin: 0;
+      background-color: #fafafa;
+      color: #333;
+      line-height: 1.6;
+    }
+    .navbar {
+      background-color: #333;
+      overflow: hidden;
+    }
+    .navbar a {
+      float: left;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+    .navbar a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    .content {
+      padding: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h1, h2, h3 {
+      color: #111;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 0;
+    }
+    .author {
+      text-align: center;
+      color: #555;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #ddd;
+      margin: 20px 0;
+    }
+    pre {
+      background-color: #f4f4f4;
+      border: 1px solid #ddd;
+      padding: 10px;
+      overflow-x: auto;
+    }
+    code {
+      color: #050505;
+      background-color: #f9f2f4;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+    .scroll-container {
+      background-color: white;
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    .scroll-container img {
+      display: inline-block;
+      vertical-align: middle;
+      max-width: none;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin: 10px;
+      height: 400px;
+    }
+    .graphimage {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .graphimage img {
+      height: 400px;
+      width: auto;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+  </style>
 </head>
-
 <body>
-  <div class="navbar">
-    <a href="../index.html">Home</a>
-    <a href="../about.html">About</a>
-    <a href="../posts.html">Projects</a>
-  </div>
+  <div class="navbar">
+    <a href="../index.html">Home</a>
+    <a href="../about.html">About</a>
+    <a href="../posts.html">Projects</a>
+  </div>
 
-  <div class="content">
-    <h1>Linear Regression</h1>
-    
-    <h2>Introduction</h2>
-    <p>
-In data science, linear regression is one of the most fundamental and important pieces of it, being used for visualizing outcomes and expectations in both vertical and horizontal formats. Through this blog post, we are going to learn the core basics of linear regression and statistics, simplified down so that it is easier to understand and apply. Linear regression can be used in several industries such as Medicare, chemistry, engineering, and even business. A linear regression line should have portions that are completely independent; they should have a constant variance between them. There are statistical summaries that show this as well, however those summaries are not as accurate as they are shown to be, and using the different python modules and libraries like matplotlib, seaborn, sklearn, numpy, we can have both a visual and statistical understanding of regression. This blog post uses the popular Anscombe's Quartet Dataset I for the data, which makes it easier to understand both visually and statistically.
-</p>
+  <div class="content">
+    <h1>Linear Regression</h1>
+    <p class="author"><strong>By:</strong> S. Khope</p>
+    <p class="author">Date: November 2025</p>
+    <hr>
 
-    <h2>Fitting a Standard Linear Regression Line</h2>
-    <p>
-The simplified and simplistic method of linear regression is called ordinary least squares (OLS). OLS is a method of finding the closest line to your actual data points, by minimizing the errors from the observed and predicted data and squaring it. This OLS line is written in the form of
-</p>
-<pre>Y = MX + B</pre>
-    <p>
-The M value is the coefficient to X, which is also known as the slope, or the rate of change between 2 y-values and 2 x-values.
-</p>
-<p>
-The B value is the value that Y will have when X = 0.
-</p>
-<p>
-This method is the most basic method of linear regression, however it is known for its simplicity, where it tries to find the line of best fit through the least amount of squares possible. However, this method is also flawed, because it is structured around a vertical format, where Y is dependent on X, with X having no errors.
-</p>
+    <h2>Introduction</h2>
+    <p>
+      In data science, linear regression is one of the most fundamental and important pieces of it, being used for visualizing outcomes and expectations in both vertical and horizontal formats. Through this blog post, we are going to learn the core basics of linear regression and statistics, simplified down so that it is easier to understand and apply. Linear regression can be used in several industries such as Medicare, chemistry, engineering, and even business. A linear regression line should have portions that are completely independent; they should have a constant variance between them. There are statistical summaries that show this as well, however those summaries are not as accurate as they are shown to be, and using the different python modules and libraries like matplotlib, seaborn, sklearn, numpy, we can have both a visual and statistical understanding of regression. This blog post uses the popular Anscombe's Quartet Dataset I for the data, which makes it easier to understand both visually and statistically.
+    </p>
 
+    <h2>Fitting a Standard Linear Regression Line</h2>
+    <p>
+      The simplified and simplistic method of linear regression is called ordinary least squares (OLS). OLS is a method of finding the closest line to your actual data points, by minimizing the errors from the observed and predicted data and squaring it. This OLS line is written in the form of
+    </p>
+    <blockquote>Y = MX + B</blockquote>
+    <p>
+      The M value is the coefficient to X, which is also known as the slope, or the rate of change between 2 y-values and 2 x-values.<br>
+      The B value is the value that Y will have when X = 0.
+    </p>
+    <p>
+      This method is the most basic method of linear regression, however it is known for its simplicity, where it tries to find the line of best fit through the least amount of squares possible. However, this method is also flawed, because it is structured around a vertical format, where Y is dependent on X, with X having no errors.
+    </p>
 
-    <h2>Understanding Residuals and Residual Distribution</h2>
-    <p>
-Residuals are one of the most important parts of linear regression. In linear regression, the goal is to predict the possible future values. Residuals are when you take the observed data and subtract it from the predicted data. If the residual varies from point to point with no constant values attached, it means that the line-of-best-fit is precise and correct.
-</p>
-<p>
-Plotting these residuals can also explain what type of dataset you are dealing with, and whether linear regression is the most suitable or not. Some data sets might have a curve, or quadratic residuals to them, which would help with adjusting the statistical interpretation of the dataset in the future. These errors are often shown through residual histograms, or through Q-Q plots.
-</CSS>
-    <h2>Statistical Interpretation</h2>
-    <p>
-Speaking of statistical interpretation, a lot of the time relying on only one of the methods is not enough to make conclusions about something. Since regression deals with prediction in many industries such as engineering, business, and biology, any mistake or misinterpretation of the visualization could mean devastating results. Therefore both the statistical interpretation and the visualization is required. In this specific example we are using the famous Anscombe's Quartet, which is more structured towards the visualization, however understanding how the numbers behind it actually work is just as important in any of the real-world scenarios given above.
-</p>
-<p>
-The different types of statistical interpretation that could be used in a project like this would be:
-</p>
-    <ul>
-      <li><strong>R² (Coefficient of Determination)</strong> - How the regression line fits the data given (on a scale from 0-1)</li>
-      <li><strong>Adjusted R-squared</strong> - Prevents overestimation</li>
-      <li><strong>P-values</strong> - How much each predicted value has an effect on Y</li>
-      <li><strong>Confidence intervals</strong> - Where the true coefficient lies</li>
-    </ul>
-<p>
-By running the code:
-</p>
-<pre>import statsmodels.api as sm
+    <h2>Understanding Residuals and Residual Distribution</h2>
+    <p>
+      Residuals are one of the most important parts of linear regression. In linear regression, the goal is to predict the possible future values. Residuals are when you take the observed data and subtract it from the predicted data. If the residual varies from point to point with no constant values attached, it means that the line-of-best-fit is precise and correct. Plotting these residuals can also explain what type of dataset you are dealing with, and whether linear regression is the most suitable or not. Some data sets might have a curve, or quadratic residuals to them, which would help with adjusting the statistical interpretation of the dataset in the future. These errors are often shown through residual histograms, or through Q-Q plots.
+    </p>
+
+    <h2>Statistical Interpretation</h2>
+    <p>
+      Speaking of statistical interpretation, a lot of the time relying on only one of the methods is not enough to make conclusions about something. Since regression deals with prediction in many industries such as engineering, business, and biology, any mistake or misinterpretation of the visualization could mean devastating results. Therefore both the statistical interpretation and the visualization is required. In this specific example we are using the famous Anscombe's Quartet, which is more structured towards the visualization, however understanding how the numbers behind it actually work is just as important in any of the real-world scenarios given above.
+    </p>
+    <p>The different types of statistical interpretation that could be used in a project like this would be:</p>
+    <ul>
+      <li><strong>R² (Coefficient of Determination)</strong> - How the regression line fits the data given (on a scale from 0-1)</li>
+      <li><strong>Adjusted R-squared</strong> - Prevents overestimation</li>
+      <li><strong>P-values</strong> - How much each predicted value has an effect on Y</li>
+      <li><strong>Confidence intervals</strong> - Where the true coefficient lies</li>
+    </ul>
+    <p>By running the code:</p>
+    <pre><code>import statsmodels.api as sm
 y = anscombe_i['y']
 X = anscombe_i['x']
 X = sm.add_constant(X)
 est = sm.OLS(y, X)
 est = est.fit()
-est.summary()</pre>
-<p>
-You can get the entire summary of the dataset we provided, but this data doesn't mean anything unless you know what to look for in each column. For linear regression specifically, the most important statistical interpretation are the 4 listed above. For <code>R²</code>, you are given a range from 0 - 1 and the closer it is to 1, the more accurate your linear regression is. For <code>R² - adjusted</code>, it cuts out all the noise. When visualizing data like this, the more the variables, the less accurate the data will be, however <code>R² - adjusted</code> counteracts that. If the value of <code>R² - adjusted</code> is closer to the value of <code>R²</code>, then it is correct, if not then you know there is something wrong with your dataset or your assumptions were wrong, which you can double check on the plots themselves. The <code>P - Value</code> determines how important the data is to affecting the dependent variable, in this case Y. If <code>P - Value</code> > 0.05, then it is probably not as important to affect the dependent variable, but if it is under 0.05, then it has a strong probability to affect it. Finally, confidence intervals are how confident you are that the prediction of the data that you made will be in the right area, and a 95% on this when compared with the slope estimate, is a very narrow estimate and thus more likely than its wide counterpart.
-</p>
+est.summary()</code></pre>
+    <p>
+      You can get the entire summary of the dataset we provided, but this data doesn't mean anything unless you know what to look for in each column. For linear regression specifically, the most important statistical interpretation are the 4 listed above. For R², you are given a range from 0 - 1 and the closer it is to 1, the more accurate your linear regression is. For R² - adjusted, it cuts out all the noise. When visualizing data like this, the more the variables, the less accurate the data will be, however R² - adjusted counteracts that. If the value of R² - adjusted is closer to the value of R², then it is correct, if not then you know there is something wrong with your dataset or your assumptions were wrong, which you can double check on the plots themselves. The P - Value determines how important the data is to affecting the dependent variable, in this case Y. If P - Value &gt; 0.05, then it is probably not as important to affect the dependent variable, but if it is under 0.05, then it has a strong probability to affect it. Finally, confidence intervals are how confident you are that the prediction of the data that you made will be in the right area, and a 95% on this when compared with the slope estimate, is a very narrow estimate and thus more likely than its wide counterpart.
+    </p>
 
-    <h2>Horizontal Regression</h2>
-    <p>
-The method that we learnt previously was OLS, which is accurate however it assumes that the independent and dependent variables are X and Y respectively, however not all datasets follow these assumptions, making our predictions invalidated if we **attempt** to find the residuals vertically. This is where we need to use horizontal residuals. This type of regression is essentially flipping the procedure to find the horizontal gaps between the datasets, which would allow us to see if they both are measured with error or not, and whether they are interchangeable. Looking at the dataset this way can help you to find angles and help you ask questions you wouldn't otherwise, which improves both your understanding and the quality of your analysis.
-</p>
+    <h2>Horizontal Regression</h2>
+    <p>
+      The method that we learnt previously was OLS, which is accurate however it assumes that the independent and dependent variables are X and Y respectively, however not all datasets follow these assumptions, making our predictions invalidated if we <strong>attempt</strong> to find the residuals vertically. This is where we need to use horizontal residuals. This type of regression is essentially flipping the procedure to find the horizontal gaps between the datasets, which would allow us to see if they both are measured with error or not, and whether they are interchangeable. Looking at the dataset this way can help you to find angles and help you ask questions you wouldn't otherwise, which improves both your understanding and the quality of your analysis.
+    </p>
 
-    <h2>Total Least Squares</h2>
-    <p>
-The total least squares are similar to the other types of linear regression, however they account for errors in both axes, rather than on one specific one. It balances both errors in each axis, which gives more of an accurate trend.
- </p>
+    <h2>Total Least Squares</h2>
+    <p>
+      The total least squares are similar to the other types of linear regression, however they account for errors in both axes, rather than on one specific one. It balances both errors in each axis, which gives more of an accurate trend.
+    </p>
 
-  </div>
+    <hr>
+    <p><strong>Tools Used:</strong> Python, Pandas, NumPy, Matplotlib, Seaborn, Statsmodels</p>
+    <p><strong>Author:</strong> S. Khope | <strong>Course:</strong> Data Visualization Project | <strong>Date:</strong> November 2025</p>
+  </div>
 </body>
 </html>
+
