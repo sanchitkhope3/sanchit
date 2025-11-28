@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classifying Cars by Fuel Efficiency (mpg01)</title>
+  <style>
+    body {
+      font-family: 'Comfortaa', sans-serif;
+      margin: 0;
+      background-color: #fafafa;
+      color: #333;
+      line-height: 1.6;
+    }
+    .navbar {
+      background-color: #333;
+      overflow: hidden;
+    }
+    .navbar a {
+      float: left;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+    .navbar a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    .content {
+      padding: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h1, h2, h3 {
+      color: #111;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 0;
+    }
+    .author {
+      text-align: center;
+      color: #555;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #ddd;
+      margin: 20px 0;
+    }
+    pre {
+      background-color: #f4f4f4;
+      border: 1px solid #ddd;
+      padding: 10px;
+      overflow-x: auto;
+    }
+    code {
+      color: #050505;
+      background-color: #f9f2f4;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+    .btn {
+      padding:10px 20px; 
+      font-size:16px; 
+      border-radius:6px; 
+      border:none; 
+      background-color:#333; 
+      color:white; 
+      cursor:pointer; 
+      margin-bottom:20px;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <a href="../index.html">Home</a>
+    <a href="../about.html">About</a>
+    <a href="../posts.html">Projects</a>
+  </div>
+
+  <div class="content">
+    <h1>Classifying Cars by Fuel Efficiency using mpg01</h1>
+    <p class="author"><strong>By:</strong> Your Name</p>
+    <p class="author">Date: November 2025</p>
+
+    <hr>
+
+    <h2>Overview</h2>
+    <p>
+      In this project, I explored how different vehicle characteristics relate to fuel efficiency using the <code>Auto.csv</code> dataset. By converting MPG into a binary classification variable called <code>mpg01</code>, I was able to separate vehicles into low vs. high efficiency classes relative to the median MPG.
+    </p>
+
+    <h2>Data Preparation & Feature Engineering</h2>
+    <pre><code>
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+import pandas as pd
+
+Autodata = pd.read_csv('Auto.csv')
+df = pd.DataFrame(Autodata)
+
+mpg_median = df['mpg'].median()
+print(mpg_median, ": is the median of Miles Per Gallon")
+
+df['mpg01'] = (df['mpg'] >= mpg_median).astype(int)
+print(df)
+
+df['horsepower'] = pd.to_numeric(df['horsepower'], errors='coerce')
+df = df.dropna(subset=['horsepower'])
+    </code></pre>
+    <p>
+      We found that the median MPG of the dataset is <strong>23.0</strong>. Cars with MPG ≥ 23 are labeled as <strong>mpg01 = 1 (high efficiency)</strong>, and those below are <strong>mpg01 = 0 (low efficiency)</strong>.
+    </p>
+
+    <hr>
+
+    <h2>Visualization of Feature Distributions</h2>
+    <p>The following code generates boxplots for several continuous features:</p>
+    <pre><code>
+features = ['displacement', 'horsepower', 'weight', 'acceleration']
+fig, axes = plt.subplots(2, 2, figsize=(15, 12))
+axes = axes.flatten()
+
+for i, feature in enumerate(features):
+    sns.boxplot(ax=axes[i], data=df, x='mpg01', y=feature)
+    axes[i].set_title(f'Boxplot of {feature.capitalize()} by mpg01')
+    axes[i].set_xlabel('mpg01 (0=Low, 1=High)')
+    </code></pre>
+
+    <p>And for categorical features:</p>
+    <pre><code>
+features2 = ['origin', 'cylinders']
+fig, axes = plt.subplots(1, 2, figsize=(15, 6))
+axes2 = axes.flatten()
+
+for i, features2 in enumerate(features2):
+    sns.countplot(ax=axes[i], data=df, x=features2, hue='mpg01')
+    axes[i].set_title(f'Countplot of {features2.capitalize()} by mpg01')
+    axes[i].set_xlabel(features2.capitalize())
+    handles, labels = axes[i].get_legend_handles_labels()
+    axes[i].legend(handles, ['0: Low MPG', '1: High MPG'], title='Fuel Efficiency')
+    </code></pre>
+
+    <hr>
+
+    <h2>Interpretation</h2>
+    <p>
+      Based on these visualizations, we can observe how different car attributes vary between fuel-efficient and fuel-inefficient vehicles. The most useful features for distinguishing between high and low MPG vehicles appear to be:
+    </p>
+
+    <ul>
+      <li><strong>Weight</strong> – heavier cars trend toward lower MPG</li>
+      <li><strong>Displacement</strong> – larger engines correlate with lower fuel efficiency</li>
+      <li><strong>Horsepower</strong> – more powerful engines tend to consume more fuel</li>
+      <li><strong>Cylinders</strong> – cars with more cylinders generally have lower MPG</li>
+      <li><strong>Acceleration</strong> – shows some difference, but less pronounced</li>
+      <li><strong>Year</strong> – newer models tend to have higher MPG</li>
+    </ul>
+
+    <p>
+     Based on these 6 graphs that we have, 6 categories: displacement, horsepower, weight, acceleration,
+      year, cylinders. When interpretting these graphs, the key function to look at are the overlaps and
+      specifically the location of them. If the 2 boxes are aligned with eachother, or at least in similar
+      locations, it means that there isn’t much difference in the 2 categories. This means that the average,
+      or the line in the middle of the boxes is around the same even if they are above or below the median
+      for MPG. Based on this, we can determine that the categories that are the most comparitive with
+      statistics like this are the weight, displacement, horsepower, cylinders, year, and acceleration, from
+      most to least useful. We can see that the weight, displacement, and horsepower are the most useful
+      in determining this, due to them being directly related to how much the car has to move, and this
+      determined how much fuel is used up because of it.You want the ones below the median to be much
+      more near the bottom of the graph, which shows us that it uses less gas per mile, which is what we
+      want.
+    </p>
+
+    <p>
+      In short: cars that are lighter, newer, and have smaller engines tend to be more fuel efficient — which makes intuitive sense.
+    </p>
+
+    <hr>
+    <p><strong>Tools Used:</strong> Python, Pandas, Seaborn, Matplotlib</p>
+    <p><strong>Author:</strong> Sanchit Khope | <strong>Course:</strong> Classification Project | <strong>Date:</strong> November 2025</p>
+
+  </div>
+</body>
+</html>
