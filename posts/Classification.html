@@ -92,13 +92,21 @@
     <p class="author">Date: November 2025</p>
 
     <hr>
-
+<a href="https://github.com/sanchitkhope3/sanchit/blob/f6455c5ce9316b2b508a4331e50d90060dd1b522/posts/Files/Auto%20(1).csv" target="_blank">
+  <button style="padding:10px 20px; font-size:16px; border-radius:6px; border:none; background-color:#333; color:white; cursor:pointer;">
+    Open CSV Data File
+  </button>
+  <a href="https://github.com/sanchitkhope3/sanchit/blob/f6455c5ce9316b2b508a4331e50d90060dd1b522/pdf%20files/Classification%20(1).pdf" target="_blank">
+  <button style="padding:10px 20px; font-size:16px; border-radius:6px; border:none; background-color:#333; color:white; cursor:pointer;">
+    Open PDF Report Full
+  </button>
+</a>
     <h2>Overview</h2>
     <p>
       In this project, I explored how different vehicle characteristics relate to fuel efficiency using the <code>Auto.csv</code> dataset. By converting MPG into a binary classification variable called <code>mpg01</code>, I was able to separate vehicles into low vs. high efficiency classes relative to the median MPG.
     </p>
 
-    <h2>Data Preparation & Feature Engineering</h2>
+    <h2>Loading the Data</h2>
     <pre><code>
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -118,12 +126,12 @@ df['horsepower'] = pd.to_numeric(df['horsepower'], errors='coerce')
 df = df.dropna(subset=['horsepower'])
     </code></pre>
     <p>
-      We found that the median MPG of the dataset is <strong>23.0</strong>. Cars with MPG ≥ 23 are labeled as <strong>mpg01 = 1 (high efficiency)</strong>, and those below are <strong>mpg01 = 0 (low efficiency)</strong>.
+      We found that the median MPG of the dataset is <strong>23.0</strong>. Cars with MPG ≥ 23 are labeled as  1  and those below are 0 .
     </p>
 
     <hr>
 
-    <h2>Visualization of Feature Distributions</h2>
+    <h2>Visualization The Data Based on Instructions</h2>
     <p>The following code generates boxplots for several continuous features:</p>
     <pre><code>
 features = ['displacement', 'horsepower', 'weight', 'acceleration']
@@ -151,7 +159,21 @@ for i, features2 in enumerate(features2):
     </code></pre>
 
     <hr>
+    <h2>Graphs</h2>
 
+    <h3>Boxplots</h3>
+     <figure>
+    <img src="https://raw.githubusercontent.com/sanchitkhope3/sanchit/3e31fe1c8feffcf1860913542235f22a78a19006/posts/images/Classification/boxplotsfo%20classification.png" alt="Final Roller Coaster" style="max-width:50%; height:auto;">
+            <figcaption>Boxplots</figcaption>
+        </figure>
+    
+    <h3>Countplots</h3>
+
+    <figure>
+    <img src="https://raw.githubusercontent.com/sanchitkhope3/sanchit/3e31fe1c8feffcf1860913542235f22a78a19006/posts/images/Classification/download%20(1).png" alt="Final Roller Coaster" style="max-width:50%; height:auto;">
+            <figcaption>Countplot</figcaption>
+        </figure>
+    <hr>
     <h2>Interpretation</h2>
     <p>
       Based on these visualizations, we can observe how different car attributes vary between fuel-efficient and fuel-inefficient vehicles. The most useful features for distinguishing between high and low MPG vehicles appear to be:
