@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linear Regression Applied Report</title>
+  <style>
+    body {
+      font-family: 'Comfortaa', sans-serif;
+      margin: 0;
+      background-color: #fafafa;
+      color: #333;
+      line-height: 1.6;
+    }
+    .navbar {
+      background-color: #333;
+      overflow: hidden;
+    }
+    .navbar a {
+      float: left;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+    .navbar a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    .content {
+      padding: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h1, h2, h3 {
+      color: #111;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 0;
+    }
+    .author {
+      text-align: center;
+      color: #555;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #ddd;
+      margin: 20px 0;
+    }
+    pre {
+      background-color: #f4f4f4;
+      border: 1px solid #ddd;
+      padding: 10px;
+      overflow-x: auto;
+    }
+    code {
+      color: #050505;
+      background-color: #f9f2f4;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      margin: 10px 0;
+    }
+
+        .graphimage img {
+   width: 100%;
+  max-width: 900px;
+  height: auto;          
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="../index.html">Home</a>
+    <a href="../about.html">About</a>
+    <a href="../posts.html">Projects</a>
+  </div>
+
+  <div class="content">
+    <h1>Linear Regression Applied</h1>
+    <p class="author"><strong>By:</strong> Sanchit Khope</p>
+    <p class="author">Date: November 29, 2025</p>
+
+    <hr>
+   <hr>
+<a href="https://github.com/sanchitkhope3/sanchit/blob/f6455c5ce9316b2b508a4331e50d90060dd1b522/posts/Files/Auto%20(1).csv" target="_blank">
+  <button style="padding:10px 20px; font-size:16px; border-radius:6px; border:none; background-color:#333; color:white; cursor:pointer;">
+    Open CSV Data File
+  </button>
+  <a href="https://github.com/sanchitkhope3/sanchit/blob/a4aababde354eea44c6dc3cda0ca34bca8ef7930/pdf%20files/LinearRegressionApplied.pdf" target="_blank">
+  <button style="padding:10px 20px; font-size:16px; border-radius:6px; border:none; background-color:#333; color:white; cursor:pointer;">
+    Open PDF Report Full
+  </button>
+</a>
+    <h2>1.1 Import the Data</h2>
+    <pre><code>import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from math import log
+from sklearn import linear_model
+import statsmodels.api as sm
+import seaborn as sns
+from statsmodels.stats.anova import anova_lm
+from statsmodels.formula.api import ols
+
+Autodata = pd.read_csv('Auto.csv')
+print(Autodata)</code></pre>
+
+    <hr>
+
+    <h2>1.2 Part A: Graphs</h2>
+    <pre><code>df = pd.DataFrame(Autodata)
+df['horsepower'] = pd.to_numeric(df['horsepower'], errors='coerce')
+df = df.dropna(subset=['horsepower'])
+
+sns.scatterplot(data=df, x='horsepower', y='mpg')
+plt.title('Scatter Plot of MPG vs Horsepower')
+plt.xlabel('Horsepower')
+plt.ylabel('MPG')
+
+x = df['horsepower']
+y = df['mpg']
+X = sm.add_constant(x)
+
+regression = sm.OLS(y,X).fit()
+sns.regplot(x='horsepower', y='mpg', data=df)
+plt.show()
+print(regression.summary())</code></pre>
+
+   <h3>Scatter Plot</h3>
+     <div class="graphimage">
+    <img src="https://raw.githubusercontent.com/sanchitkhope3/sanchit/a4aababde354eea44c6dc3cda0ca34bca8ef7930/posts/images/linearregressionapplied/MPG%20vs%20Horsepower%20Scatter.png" alt="Final Roller Coaster">
+    
+    <hr>
+
+    <h2>1.3 Questions</h2>
+    <h3>i. Is there a relationship between the predictor and the response?</h3>
+    <p>There is infact a relationship between the predictor and the response. In this specific example the predictor is the Horsepower, and the response in the MPG (miles per gallon). Now if we think logically and critically without the datasets, regression, or the summary, there is obviously going to be a relationship between the two, because the higher the horsepower, the most fuel it consumes and the lower the miles per gallon. However in this exercise we want to look at one specific point, the P> |t| value in this summary.<br><br>The P-Value is the value that takes random points on the graph to see if it disproves the Null hypothesis. The null hypothesis, is the hypothesis that the predictor and response do not have a relationship with eachother. Now this value clearly needs to be smaller than 0.05. This value is chosen because it aligns with the 95% Internval of Confidence in this, meaning that there is a 5% chance that it is just a random outlier that doesn’t have anything to do with the rest of the results.<br><br>Our P-value is 0.000, which is smaller than 0.05, thus there is a relationship between the 2 values. The 0.000 is rounded down from an insanely small number, and even by looking at the graph we can see that there is clearly a trend going down as the horsepower increases.</p>
+
+    <h3>ii. How strong is the relationship?</h3>
+    <p>R-Squared is one of the most useful pieces of information about any data set that you can have, and this along with P-value can tell you about the relationship of data. R-Squared is used to see the correlation between 2 variables, and it sees how well it follows the regression line. It runs between 0-1, with the closer to 1 it gets, the stronger the relationship and the accuracy of the data in regards to the regression line. The R-Squared is all about prediction, how closely the data follows the trend identified by the regression, which brings us to our value. Our R-squared value is 0.606, which put into simple terms says that the horsepower explains 60.6% the MPG, and that 60.6% is clustered around the line of regression.</p>
+
+    <h3>iii. Is the relationship positive or negative?</h3>
+    <p>Now if we look at the formula of linear regression, we get y = mx + b. Now there are definitions for each of these values in this specific dataset. X is the predictor, independent variable, or horsepower. Y is the response, dependent variable, or the MPG. B is the constant value applied to this dataset, which explains what happens to the MPG when horsepower is 0. M is the slope, which is also known as the coefficient to the dependent variable.<br><br>The M value in this case controls the trend of the regression line. Having a value of -0.1578, this means that the slope of the trend is a negative value. This also matches the practical reading of the data, which also says that as horsepower increases, MPG will decrease.</p>
+
+    <h3>iv. Predicted MPG at 98 horsepower</h3>
+    <p>To find the predicted MPG at 98 horsepower you simply plug it into the x-value. Your work would look like:<br><br>39.9359 + (98 × -0.1578) = 24.47.<br><br>And therefore, for a horsepower of 98, your estimated MPG would be 24.47.<br><br>The associated 95% confidence and prediction intervals at 98 would be calculated by running the code:<br><br>• ci_predict = [1, 98]<br>• prediction = regression.get_prediction(ci_predict)<br>• print(prediction.summary_frame(alpha=0.05))<br><br>Reading this output, the mean matches the predicted values. The mean_ci_lower and mean_ci_upper are the confidence intervals, and the obs_ci_lower and obs_ci_upper are the prediction intervals. This means that we are 95% confident that the MPG for 98 horsepower are between these 2 values, and that one specific car is between these 2 values in the predicted range.</p>
+
+    <h2>1.3.1 Confidence and Prediction Intervals</h2>
+    <pre><code>ci_predict = [1, 98]
+prediction = regression.get_prediction(ci_predict)
+print(prediction.summary_frame(alpha=0.05).T)</code></pre>
+
+    <h2>1.3.2 (b)</h2>
+    <pre><code>fix, ax = plt.subplots()
+ax.scatter(df['horsepower'], df['mpg'])
+intrcpt = regression.params.iloc[0]
+slope1 = regression.params.iloc[1]
+ax.axline((0, intrcpt), slope=slope1, color='green')</code></pre>
+
+        <h3>AX.AXLINE Graph</h3>
+     <div class="graphimage">
+    <img src="https://raw.githubusercontent.com/sanchitkhope3/sanchit/a4aababde354eea44c6dc3cda0ca34bca8ef7930/posts/images/linearregressionapplied/ax.axline%20graph.png" alt="Final Roller Coaster">
+    
+
+    <h2>1.3.3 (c)</h2>
+    <pre><code>fittedvalues = regression.fittedvalues
+residual = regression.resid
+
+plt.scatter(fittedvalues,residual)
+plt.axhline(0, color='blue', linestyle='--')</code></pre>
+
+        <h3>Fitted Vs Residual</h3>
+     <div class="graphimage">
+    <img src="https://raw.githubusercontent.com/sanchitkhope3/sanchit/a4aababde354eea44c6dc3cda0ca34bca8ef7930/posts/images/linearregressionapplied/fitted%20vs%20residual%20graph.png" alt="Final Roller Coaster">
+    <hr>
+ <pre><code>sm.qqplot(residual, line='45')
+plt.title("Normal Q-Q Plot")
+plt.show()</code></pre>
+
+        <h3>Q-Q Plot</h3>
+     <div class="graphimage">
+    <img src="https://raw.githubusercontent.com/sanchitkhope3/sanchit/a4aababde354eea44c6dc3cda0ca34bca8ef7930/posts/images/linearregressionapplied/qq%20plot.png" alt="Final Roller Coaster">
+    <hr>
+
+    <h2>1.4 Part B</h2>
+    <pre><code>sns.pairplot(df.drop(columns=["name"]))
+plt.show()</code></pre>
+
+        <h3>Scatterplot Matrix</h3>
+     <div class="graphimage">
+    <img src="https://raw.githubusercontent.com/sanchitkhope3/sanchit/a4aababde354eea44c6dc3cda0ca34bca8ef7930/posts/images/linearregressionapplied/scatterplot%20matrix.png">
+    
+<hr>
+       
+    <pre><code>corr_matrix = df.drop(columns=["name"]).corr()
+print(corr_matrix)</code></pre>
+
+<hr>
+       
+    <h2>1.4.1 Multiple Linear Regression</h2>
+    <pre><code>X = df.drop(columns=["mpg", "name"])
+y = df["mpg"]
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+print(model.summary())</code></pre>
+
+    <hr>
+
+    <h2>1.5 Questions 2</h2>
+    <p><strong>i. Is there a relationship between the predictors and the response?</strong><br>An annova table is a table used to see the relationship and significance of the predictors and responses in a data set, being short for Analysis of Variance Table. Our predictor is the MPG (miles per gallon). In this table there are 4 parts of it in the summary:<br><br>• Sum of Squares: how much variation in the response each factor explains<br>• Degrees of Freedom: How many values can change freely before the rest are fixed<br>• F-Statistic: ratio of explained variance to unexplained variance<br>• PR/P-Value: probability that the factor has no real effect (<0.05 is better and more significant)<br><br>In this specific summary, we need to look at the F-Values and the F-Statistic. These 2 ratios are the most significant to seeing the relationship between the predictors and the responses. The F-values are very important—the larger the F-value, the more we know about variance in the responses and how it correlates with the predictor. If the predictor can explain more of the data, it is a clear sign of whether it is significant or not. However this is not the only statistic that we have to look at. A more accurate predictor that we use is the P-Value.<br><br>With the P-Value, it is the opposite. The P-Value needs to be below 0.05 in order for it to be deemed significant. It uses the F-Statistic, and using probability it deems whether the category is significant by chance or not. The lower the p-value, the less percent chance the F-Value is random and happened by chance—such as if the P-Value is 0.01, then there is a 1% chance the F-value is false.<br><br>Based on these 2, there are 4 predictors that seem to have a significant relationship, and 3 that don’t.<br><br><strong>Significant Predictors (p < 0.05)</strong><br>• displacement (p = 0.008)<br>• weight (p ≈ 0)<br>• year (p ≈ 0)<br>• origin (p = 4.67e-07)<br><br><strong>Not Significant Predictors (p ≥ 0.05)</strong><br>• cylinders (p = 0.128)<br>• horsepower (p = 0.22)<br>• acceleration (p = 0.415)</p>
+
+<p><strong>ii. Which predictors appear to have a statistically significant relationship to the response?</strong><br>The same four predictors listed above: displacement, weight, year, and origin.</p>
+
+<p><strong>iii. What does the coefficient for the year variable suggest?</strong><br>The coefficient on the year variable tells us that the year is always increasing, which makes sense because time cannot go backwards, and that it is moving at a linear scale. The coefficient of the year being around 0.7508 indicates that for each passing year, MPG increases by roughly 0.75. On the ANOVA chart, the t-statistic (14.729) is very high, indicating a strong effect on MPG as well. Using common knowledge, we can predict that the newer a car is, the more MPG it will have, and having a positive trend reflects this quite well.</p>
+
+    <hr>
+    <p><strong>Tools Used:</strong> Python, Pandas, Statsmodels, Seaborn, Matplotlib</p>
+    <p><strong>Author:</strong> Sanchit Khope | <strong>Course:</strong> TER Robotics | <strong>Date:</strong> November 2025</p>
+  </div>
+</body>
+</html>
