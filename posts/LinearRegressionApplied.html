@@ -134,6 +134,29 @@ sns.regplot(x='horsepower', y='mpg', data=df)
 plt.show()
 print(regression.summary())</code></pre>
 
+ <pre><code>OLS Regression Results
+==============================================================================
+Dep. Variable: mpg R-squared: 0.606
+Model: OLS Adj. R-squared: 0.605
+Method: Least Squares F-statistic: 599.7
+Date: Sat, 29 Nov 2025 Prob (F-statistic): 7.03e-81
+Time: 17:18:41 Log-Likelihood: -1178.7
+No. Observations: 392 AIC: 2361.
+Df Residuals: 390 BIC: 2369.
+Df Model: 1
+Covariance Type: nonrobust
+==============================================================================
+coef std err t P>|t| [0.025 0.975]
+------------------------------------------------------------------------------
+const 39.9359 0.717 55.660 0.000 38.525 41.347
+horsepower -0.1578 0.006 -24.489 0.000 -0.171 -0.145
+==============================================================================
+Omnibus: 16.432 Durbin-Watson: 0.920
+Prob(Omnibus): 0.000 Jarque-Bera (JB): 17.305
+Skew: 0.492 Prob(JB): 0.000175
+Kurtosis: 3.299 Cond. No. 322.
+==============================================================================</code></pre>
+  
    <h3>Scatter Plot</h3>
      <div class="graphimage">
     <img src="https://raw.githubusercontent.com/sanchitkhope3/sanchit/a4aababde354eea44c6dc3cda0ca34bca8ef7930/posts/images/linearregressionapplied/MPG%20vs%20Horsepower%20Scatter.png" alt="Final Roller Coaster">
@@ -158,6 +181,16 @@ print(regression.summary())</code></pre>
 prediction = regression.get_prediction(ci_predict)
 print(prediction.summary_frame(alpha=0.05).T)</code></pre>
 
+       <h3>Confidence Table</h3>
+<pre><code>
+mean 24.467077
+mean_se 0.251262
+mean_ci_lower 23.973079
+mean_ci_upper 24.961075
+obs_ci_lower 14.809396
+obs_ci_upper 34.124758
+
+</code></pre>
     <h2>1.3.2 (b)</h2>
     <pre><code>fix, ax = plt.subplots()
 ax.scatter(df['horsepower'], df['mpg'])
@@ -203,6 +236,31 @@ plt.show()</code></pre>
     <pre><code>corr_matrix = df.drop(columns=["name"]).corr()
 print(corr_matrix)</code></pre>
 
+<h3>Correlation Matrix Results</h3>
+       <pre><code>corr_matrix = df.drop(columns=["name"]).corr()
+print(corr_matrix)
+
+
+mpg cylinders displacement horsepower weight
+mpg 1.000000 -0.777618 -0.805127 -0.778427 -0.832244
+cylinders -0.777618 1.000000 0.950823 0.842983 0.897527
+displacement -0.805127 0.950823 1.000000 0.897257 0.932994
+horsepower -0.778427 0.842983 0.897257 1.000000 0.864538
+weight -0.832244 0.897527 0.932994 0.864538 1.000000
+acceleration 0.423329 -0.504683 -0.543800 -0.689196 -0.416839
+year 0.580541 -0.345647 -0.369855 -0.416361 -0.309120
+origin 0.565209 -0.568932 -0.614535 -0.455171 -0.585005
+
+
+acceleration year origin
+mpg 0.423329 0.580541 0.565209
+cylinders -0.504683 -0.345647 -0.568932
+displacement -0.543800 -0.369855 -0.614535
+horsepower -0.689196 -0.416361 -0.455171
+weight -0.416839 -0.309120 -0.585005
+acceleration 1.000000 0.290316 0.212746
+year 0.290316 1.000000 0.181528
+origin 0.212746 0.181528 1.000000</code></pre>
 <hr>
        
     <h2>1.4.1 Multiple Linear Regression</h2>
@@ -213,6 +271,48 @@ X = sm.add_constant(X)
 model = sm.OLS(y, X).fit()
 print(model.summary())</code></pre>
 
+       <h3>Multiple Linear RegressionSummary</h3>
+       <pre><code>OLS Regression Results
+==============================================================================
+Dep. Variable: mpg R-squared: 0.821
+Model: OLS Adj. R-squared: 0.818
+Method: Least Squares F-statistic: 252.4
+Date: Sat, 29 Nov 2025 Prob (F-statistic): 2.04e-139
+Time: 18:01:26 Log-Likelihood: -1023.5
+No. Observations: 392 AIC: 2063.
+Df Residuals: 384 BIC: 2095.
+Df Model: 7
+Covariance Type: nonrobust
+================================================================================
+coef std err t P>|t| [0.025 0.975]
+--------------------------------------------------------------------------------
+const -17.2184 4.644 -3.707 0.000 -26.350 -8.087
+cylinders -0.4934 0.323 -1.526 0.128 -1.129 0.142
+displacement 0.0199 0.008 2.647 0.008 0.005 0.035
+horsepower -0.0170 0.014 -1.230 0.220 -0.044 0.010
+weight -0.0065 0.001 -9.929 0.000 -0.008 -0.005
+acceleration 0.0806 0.099 0.815 0.415 -0.114 0.275
+year 0.7508 0.051 14.729 0.000 0.651 0.851
+origin 1.4261 0.278 5.127 0.000 0.879 1.973
+==============================================================================
+Omnibus: 31.906 Durbin-Watson: 1.309
+Prob(Omnibus): 0.000 Jarque-Bera (JB): 53.100
+Skew: 0.529 Prob(JB): 2.95e-12
+Kurtosis: 4.460 Cond. No. 8.59e+04
+==============================================================================</code></pre>
+
+       <h3>Anova Table</h3>
+       <pre><code>----------Anova Summary----------
+sum_sq df F PR(>F)
+cylinders 25.791491 1.0 2.329125 1.277965e-01
+displacement 77.612668 1.0 7.008884 8.444649e-03
+horsepower 16.739754 1.0 1.511699 2.196328e-01
+weight 1091.631693 1.0 98.580813 7.874953e-21
+acceleration 7.358417 1.0 0.664509 4.154780e-01
+year 2402.249906 1.0 216.937408 3.055983e-39
+origin 291.134494 1.0 26.291171 4.665681e-07
+Residual 4252.212530 384.0 NaN NaN
+</code></pre>
     <hr>
 
     <h2>1.5 Questions 2</h2>
