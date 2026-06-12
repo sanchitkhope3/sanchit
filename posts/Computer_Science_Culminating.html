@@ -96,52 +96,54 @@
     
     <pre><code>
 Precision Heist:
-      PImage background;
-PImage guard;
-PImage document;
-PImage mainCharacter;
-boolean gameWon;
-boolean caught;
-boolean documentFound;
-int docChoice;
-int mainCharacterX = 580;
-int mainCharacterY = 180;
-
-int [] guardX = {130,1100,1070,1040,870};
-int [] guardY = {170,550,200, 830,190};
-int [] guardSpeed = {7,7,7,7,7};
-boolean [] VertorHor = {true,false,true,false,false};
-int [] guardMinX = {0,40,0,110,300};
-int [] guardMaxX = {1200,1120,1200,1120,870};
-
-int [] guardMaxY = {580,1000,880,1000,1000};
-int [] guardMinY = {130,0,130,0,0};
-
-int [] guardTimings = {0,3000,6000,9000,12000};
-
-int [] docX = {45,1120,1090};
-int [] docY = {370,420,830};
-PFont myFont;
-
+  PImage background;
+  PImage guard;
+  PImage document;
+  PImage mainCharacter;
+  boolean gameWon;
+  boolean caught;
+  boolean documentFound;
+  int docChoice;
+  int mainCharacterX = 580;
+  int mainCharacterY = 180;
+  
+  int [] guardX = {130,1100,1070,1040,870};
+  int [] guardY = {170,550,200, 830,190};
+  int [] guardSpeed = {7,7,7,7,7};
+  boolean [] VertorHor = {true,false,true,false,false};
+  int [] guardMinX = {0,40,0,110,300};
+  int [] guardMaxX = {1200,1120,1200,1120,870};
+  
+  int [] guardMaxY = {580,1000,880,1000,1000};
+  int [] guardMinY = {130,0,130,0,0};
+  
+  int [] guardTimings = {0,3000,6000,9000,12000};
+  
+  int [] docX = {45,1120,1090};
+  int [] docY = {370,420,830};
+  PFont myFont;
+  
 Fatal Lane:
-      PImage BackDrop;
-PImage HeroCar;
-PImage BadCar;
-PImage OtherBadcar;
- int badCarY = -500;
- int badCarY2 = -200;
- int randomDropX;
- int randomDropX2;
- float [] carsX = new float[4];
- float [] carsY = new float[4];
- float [] carSpeed = new float[4];
- int [] carType = new int[4];
- boolean gameWon = false;
-boolean carHit = false;
-int heroCarX;
-int winDist = 5000;
-int currentDist;
-PFont myFont;
+  PImage BackDrop;
+  PImage HeroCar;
+  PImage BadCar;
+  PImage OtherBadcar;
+   int badCarY = -500;
+   int badCarY2 = -200;
+   int randomDropX;
+   int randomDropX2;
+   float [] carsX = new float[4];
+   float [] carsY = new float[4];
+   float [] carSpeed = new float[4];
+   int [] carType = new int[4];
+   boolean gameWon = false;
+  boolean carHit = false;
+  int heroCarX;
+  int winDist = 5000;
+  int currentDist;
+  PFont myFont;
+
+      
     </code></pre>
 
     <p>
