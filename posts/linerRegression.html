@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Elementor</title>
+  <title>Elementor Style Loading Screen</title>
   <style>
     /* Reset & Base Layout */
     * {
@@ -30,10 +30,10 @@
       gap: 20px;
     }
 
-    /* Outer Ring with Spinner animation (Increased size) */
+    /* Outer Ring with Spinner animation */
     .spinner-ring {
-      width: 100px; /* Increased from 72px */
-      height: 100px; /* Increased from 72px */
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       background-color: #2b2e38; /* Circle background */
       position: relative;
@@ -56,20 +56,35 @@
       animation: spin 1.2s linear infinite;
     }
 
-    /* Elementor 'E' Logo inside circle (Increased size) */
+    /* SVG "E" Logo Container */
     .elementor-icon {
-      width: 48px; /* Increased from 32px */
-      height: 48px; /* Increased from 32px */
-      background-color: #ffffff;
-      /* Mask to create the stylized "E" shape */
-      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 3h18v4H3V3zm0 7h11v4H3v-4zm0 7h18v4H3v-4z'/%3E%3C/svg%3E") center/contain no-repeat;
-      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 3h18v4H3V3zm0 7h11v4H3v-4zm0 7h18v4H3v-4z'/%3E%3C/svg%3E") center/contain no-repeat;
+      width: 48px;
+      height: 48px;
+    }
+
+    /* Individual bars of the "E" logo */
+    .bar {
+      fill: #ffffff;
+      animation: shift-bar 1.8s ease-in-out infinite alternate;
+    }
+
+    /* Staggered delay for each bar */
+    .bar-top {
+      animation-delay: 0s;
+    }
+
+    .bar-middle {
+      animation-delay: 0.2s;
+    }
+
+    .bar-bottom {
+      animation-delay: 0.4s;
     }
 
     /* Loading Text Styling */
     .loading-text {
       color: #9b9ea8;
-      font-size: 13px; /* Slightly increased to stay proportional */
+      font-size: 13px;
       font-weight: 600;
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -94,13 +109,30 @@
         opacity: 1;
       }
     }
+
+    /* Horizontal shifting keyframe for the bars */
+    @keyframes shift-bar {
+      0% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(3px); /* Subtle shift right */
+      }
+      100% {
+        transform: translateX(-3px); /* Subtle shift left */
+      }
+    }
   </style>
 </head>
 <body>
 
   <div class="loader-container">
     <div class="spinner-ring">
-      <div class="elementor-icon"></div>
+      <svg class="elementor-icon" viewBox="0 0 24 24">
+        <rect class="bar bar-top" x="3" y="3" width="18" height="4" rx="0.5" />
+        <rect class="bar bar-middle" x="3" y="10" width="11" height="4" rx="0.5" />
+        <rect class="bar bar-bottom" x="3" y="17" width="18" height="4" rx="0.5" />
+      </svg>
     </div>
     <div class="loading-text">Loading</div>
   </div>
