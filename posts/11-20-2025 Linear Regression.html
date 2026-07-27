@@ -154,7 +154,119 @@ X = anscombe_i['x']
 X = sm.add_constant(X)
 est = sm.OLS(y, X)
 est = est.fit()
-est.summary()</code></pre>
+est.summary()
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elementor Style Loading Screen</title>
+  <style>
+    /* Reset & Base Layout */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #121319; /* Dark background matching the video */
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow: hidden;
+    }
+
+    /* Container for the loader elements */
+    .loader-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* Outer Ring with Spinner animation */
+    .spinner-ring {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background-color: #2b2e38; /* Circle background */
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Rotating border ring */
+    .spinner-ring::before {
+      content: "";
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: #9b9ea8; /* Rotating arc color */
+      animation: spin 1.2s linear infinite;
+    }
+
+    /* Elementor 'E' Logo inside circle */
+    .elementor-icon {
+      width: 32px;
+      height: 32px;
+      background-color: #ffffff;
+      /* Mask to create the stylized "E" shape */
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 3h18v4H3V3zm0 7h11v4H3v-4zm0 7h18v4H3v-4z'/%3E%3C/svg%3E") center/contain no-repeat;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 3h18v4H3V3zm0 7h11v4H3v-4zm0 7h18v4H3v-4z'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+
+    /* Loading Text Styling */
+    .loading-text {
+      color: #9b9ea8;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: pulse 1.5s ease-in-out infinite alternate;
+    }
+
+    /* Animations */
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        opacity: 0.4;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="loader-container">
+    <div class="spinner-ring">
+      <div class="elementor-icon"></div>
+    </div>
+    <div class="loading-text">Loading</div>
+  </div>
+
+</body>
+</html>
+
+</code></pre>
     <p>
       You can get the entire summary of the dataset we provided, but this data doesn't mean anything unless you know what to look for in each column. For linear regression specifically, the most important statistical interpretation are the 4 listed above. For R², you are given a range from 0 - 1 and the closer it is to 1, the more accurate your linear regression is. For R² - adjusted, it cuts out all the noise. When visualizing data like this, the more the variables, the less accurate the data will be, however R² - adjusted counteracts that. If the value of R² - adjusted is closer to the value of R², then it is correct, if not then you know there is something wrong with your dataset or your assumptions were wrong, which you can double check on the plots themselves. The P - Value determines how important the data is to affecting the dependent variable, in this case Y. If P - Value &gt; 0.05, then it is probably not as important to affect the dependent variable, but if it is under 0.05, then it has a strong probability to affect it. Finally, confidence intervals are how confident you are that the prediction of the data that you made will be in the right area, and a 95% on this when compared with the slope estimate, is a very narrow estimate and thus more likely than its wide counterpart.
     </p>
