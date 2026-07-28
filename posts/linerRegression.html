@@ -23,17 +23,18 @@
       position: relative;
     }
 
-    /* Top Purple Loading Line */
+    /* Top Purple Loading Line Track */
     .top-loading-bar {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 3px; /* Thin line height */
-      background-color: rgba(209, 4, 211, 0.15); /* #D104D3 translucent track */
+      background-color: rgba(209, 4, 211, 0.15); /* Translucent track */
       overflow: hidden;
     }
 
+    /* Solid Purple Line */
     .top-loading-bar::after {
       content: "";
       position: absolute;
@@ -41,8 +42,8 @@
       left: -40%;
       width: 40%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, #D104D3, transparent);
-      animation: top-bar-slide 2s ease-in-out infinite;
+      background-color: #D104D3; /* Solid #D104D3 line */
+      animation: top-bar-halt 2.2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
     }
 
     /* Container for the loader elements */
@@ -105,12 +106,20 @@
     }
 
     /* Keyframe Animations */
-    @keyframes top-bar-slide {
+    
+    /* Top Line: Rush, Halt in Center, then Finish */
+    @keyframes top-bar-halt {
       0% {
         left: -40%;
       }
+      40% {
+        left: 30%; /* Fast rush to middle-left */
+      }
+      65% {
+        left: 30%; /* Pause/halt moment */
+      }
       100% {
-        left: 100%;
+        left: 100%; /* Speed off to the right */
       }
     }
 
