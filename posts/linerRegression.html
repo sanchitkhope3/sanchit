@@ -34,16 +34,15 @@
       overflow: hidden;
     }
 
-    /* Solid Purple Line */
+    /* Continuous Solid Purple Line Growing to the Middle */
     .top-loading-bar::after {
       content: "";
       position: absolute;
       top: 0;
-      left: -40%;
-      width: 40%;
+      left: 0;
       height: 100%;
       background-color: #D104D3; /* Solid #D104D3 line */
-      animation: top-bar-halt 2.2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+      animation: fill-to-middle 3s cubic-bezier(0.22, 1, 0.36, 1) infinite;
     }
 
     /* Container for the loader elements */
@@ -107,19 +106,21 @@
 
     /* Keyframe Animations */
     
-    /* Top Line: Rush, Halt in Center, then Finish */
-    @keyframes top-bar-halt {
+    /* Top Line: Fills from left to 50% width and halts */
+    @keyframes fill-to-middle {
       0% {
-        left: -40%;
+        width: 0%;
       }
       40% {
-        left: 30%; /* Fast rush to middle-left */
+        width: 50%; /* Reaches the exact middle */
       }
-      65% {
-        left: 30%; /* Pause/halt moment */
+      85% {
+        width: 50%; /* Holds in place at the middle */
+        opacity: 1;
       }
       100% {
-        left: 100%; /* Speed off to the right */
+        width: 50%;
+        opacity: 0; /* Smooth reset for looping */
       }
     }
 
