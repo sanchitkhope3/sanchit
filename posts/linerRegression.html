@@ -27,77 +27,66 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px;
+      gap: 24px;
     }
 
-    /* Outer Ring with Spinner animation */
-    .spinner-ring {
-      width: 100px;
-      height: 100px;
+    /* Enlarged Main Circle Container (Border ring removed) */
+    .circle-container {
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
-      background-color: #2b2e38; /* Circle background */
-      position: relative;
+      background-color: #2b2e38;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    /* Rotating border ring */
-    .spinner-ring::before {
-      content: "";
-      position: absolute;
-      top: -4px;
-      left: -4px;
-      right: -4px;
-      bottom: -4px;
-      border-radius: 50%;
-      border: 4px solid transparent;
-      border-top-color: #9b9ea8; /* Rotating arc color */
-      animation: spin 1.2s linear infinite;
-    }
-
-    /* SVG "E" Logo Container */
+    /* SVG "E" Logo */
     .elementor-icon {
-      width: 48px;
-      height: 48px;
+      width: 64px;
+      height: 64px;
     }
 
-    /* Individual bars of the "E" logo */
+    /* Base styling for all logo bars */
     .bar {
       fill: #ffffff;
-      animation: shift-bar 1.8s ease-in-out infinite alternate;
+      animation: fade-sequence 1.6s ease-in-out infinite;
     }
 
-    /* Staggered delay for each bar */
-    .bar-top {
+    /* Sequential Staggered Delays for Chain Fading */
+    .bar-vertical {
       animation-delay: 0s;
     }
 
-    .bar-middle {
+    .bar-top {
       animation-delay: 0.2s;
     }
 
-    .bar-bottom {
+    .bar-middle {
       animation-delay: 0.4s;
+    }
+
+    .bar-bottom {
+      animation-delay: 0.6s;
     }
 
     /* Loading Text Styling */
     .loading-text {
       color: #9b9ea8;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
       letter-spacing: 2px;
       text-transform: uppercase;
       animation: pulse 1.5s ease-in-out infinite alternate;
     }
 
-    /* Animations */
-    @keyframes spin {
-      0% {
-        transform: rotate(0deg);
+    /* Keyframe Animations */
+    @keyframes fade-sequence {
+      0%, 100% {
+        opacity: 0.25;
       }
-      100% {
-        transform: rotate(360deg);
+      30% {
+        opacity: 1;
       }
     }
 
@@ -109,29 +98,18 @@
         opacity: 1;
       }
     }
-
-    /* Horizontal shifting keyframe for the bars */
-    @keyframes shift-bar {
-      0% {
-        transform: translateX(0);
-      }
-      50% {
-        transform: translateX(3px); /* Subtle shift right */
-      }
-      100% {
-        transform: translateX(-3px); /* Subtle shift left */
-      }
-    }
   </style>
 </head>
 <body>
 
   <div class="loader-container">
-    <div class="spinner-ring">
+    <div class="circle-container">
       <svg class="elementor-icon" viewBox="0 0 24 24">
-        <rect class="bar bar-top" x="3" y="3" width="18" height="4" rx="0.5" />
-        <rect class="bar bar-middle" x="3" y="10" width="11" height="4" rx="0.5" />
-        <rect class="bar bar-bottom" x="3" y="17" width="18" height="4" rx="0.5" />
+        <rect class="bar bar-vertical" x="3" y="3" width="4" height="18" rx="0.5" />
+        
+        <rect class="bar bar-top" x="9" y="3" width="12" height="4" rx="0.5" />
+        <rect class="bar bar-middle" x="9" y="10" width="12" height="4" rx="0.5" />
+        <rect class="bar bar-bottom" x="9" y="17" width="12" height="4" rx="0.5" />
       </svg>
     </div>
     <div class="loading-text">Loading</div>
