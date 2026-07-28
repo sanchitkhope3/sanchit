@@ -20,6 +20,29 @@
       align-items: center;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       overflow: hidden;
+      position: relative;
+    }
+
+    /* Top Purple Loading Line */
+    .top-loading-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px; /* Thin line height */
+      background-color: rgba(209, 4, 211, 0.15); /* #D104D3 translucent track */
+      overflow: hidden;
+    }
+
+    .top-loading-bar::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -40%;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, #D104D3, transparent);
+      animation: top-bar-slide 2s ease-in-out infinite;
     }
 
     /* Container for the loader elements */
@@ -27,13 +50,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 24px;
+      gap: 28px;
     }
 
-    /* Enlarged Main Circle Container (Border ring removed) */
+    /* Circle Container */
     .circle-container {
-      width: 140px;
-      height: 140px;
+      width: 170px;
+      height: 170px;
       border-radius: 50%;
       background-color: #2b2e38;
       display: flex;
@@ -43,49 +66,59 @@
 
     /* SVG "E" Logo */
     .elementor-icon {
-      width: 64px;
-      height: 64px;
+      width: 80px;
+      height: 80px;
     }
 
     /* Base styling for all logo bars */
     .bar {
       fill: #ffffff;
-      animation: fade-sequence 1.6s ease-in-out infinite;
+      opacity: 0.15; /* Baseline opacity */
+      animation: fade-sequence 2.4s ease-in-out infinite;
     }
 
-    /* Sequential Staggered Delays for Chain Fading */
+    /* Sequential Staggered Delays */
     .bar-vertical {
       animation-delay: 0s;
     }
 
     .bar-top {
-      animation-delay: 0.2s;
+      animation-delay: 0.35s;
     }
 
     .bar-middle {
-      animation-delay: 0.4s;
+      animation-delay: 0.7s;
     }
 
     .bar-bottom {
-      animation-delay: 0.6s;
+      animation-delay: 1.05s;
     }
 
     /* Loading Text Styling */
     .loading-text {
       color: #9b9ea8;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 600;
       letter-spacing: 2px;
       text-transform: uppercase;
-      animation: pulse 1.5s ease-in-out infinite alternate;
+      animation: pulse 1.8s ease-in-out infinite alternate;
     }
 
     /* Keyframe Animations */
+    @keyframes top-bar-slide {
+      0% {
+        left: -40%;
+      }
+      100% {
+        left: 100%;
+      }
+    }
+
     @keyframes fade-sequence {
       0%, 100% {
-        opacity: 0.25;
+        opacity: 0.15;
       }
-      30% {
+      35% {
         opacity: 1;
       }
     }
@@ -101,6 +134,8 @@
   </style>
 </head>
 <body>
+
+  <div class="top-loading-bar"></div>
 
   <div class="loader-container">
     <div class="circle-container">
